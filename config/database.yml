@@ -78,9 +78,15 @@ test:
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
-#
+
 production:
   <<: *default
-  database: rsvpify_production
-  username: rsvpify
-  password: <%= ENV["RSVPIFY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  
+#
+# production:
+#   <<: *default
+#   database: rsvpify_production
+#   username: rsvpify
+#   password: <%= ENV["RSVPIFY_DATABASE_PASSWORD"] %>
+
