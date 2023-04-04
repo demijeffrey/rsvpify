@@ -1,6 +1,7 @@
 // import '../App.css';
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Login from "./Login";
 import NavBar from "./NavBar";
 
 function App() {
@@ -19,6 +20,10 @@ function App() {
         <Switch>
           <Route path="/testing">
             <h1>Test Route</h1>
+          </Route>
+          <Route path="/login">
+            <h1>Login</h1>
+            <Login />
           </Route>
           <Route path="/">
             <h1>Page Count: {count}</h1>
