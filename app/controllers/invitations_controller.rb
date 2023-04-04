@@ -3,8 +3,8 @@ class InvitationsController < ApplicationController
     before_create :generate_token
 
     def create
-    invite = Invitation.create(invitation_params)
-    render json:
+        invite = Invitation.create(invitation_params)
+        render json: invite
     end
 
     def index
