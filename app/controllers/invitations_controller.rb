@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
 
-    before_create :generate_token
+    # before_create :generate_token
 
     def create
         invite = Invitation.create(invitation_params)
