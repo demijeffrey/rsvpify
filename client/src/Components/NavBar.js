@@ -37,7 +37,7 @@ function NavBar() {
                     <a href="#" className="brand-logo right">RSVPify</a>
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
                         <li><a onClick={handleLogout}>Logout</a></li>
-                        <li><a href="/signup">My Events</a></li>
+                        <li><a href="/home">My Events</a></li>
                         <li><a href="collapsible.html">JavaScript</a></li>
                     </ul>
                 </div>
