@@ -1,15 +1,14 @@
 // import '../App.css';
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import NavBar from "./NavBar";
 import SignUp from "./SignUp";
 import Home from "./Home";
 import UserHome from "./UserHome";
-import Event from "./Event";
+import UserEvent from "./UserEvent";
+import EditEvent from "./EditEvent";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
@@ -18,7 +17,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<UserHome />} />
-        <Route path="/event" element={<Event />} />
+        <Route path="/event" element={<UserEvent />} />
+        <Route path="/edit" element={<EditEvent />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </div>
