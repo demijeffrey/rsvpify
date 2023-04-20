@@ -1,28 +1,23 @@
-import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { logoutUser } from "../features/users/userSlice"
-import { useState } from "react"
+import { UserContext } from "../context/user"
+import { useContext } from "react"
 
 function NavBar() {
 
-    const currentUser = useSelector((state) => state.user)
-    // console.log(currentUser[0])
-
-    const [error, setError] = useState(null)
-
     const navigate = useNavigate()
+    const {logout, loggedIn} = useContext(UserContext)
 
     function handleLogout() {
         fetch('/logout', {
             method: 'DELETE'
         })
         .then(() => {
-            logoutUser()
+            logout()
             navigate('/login')
         })
     }
 
-    if(currentUser[0]) {
+    if(!loggedIn) {
         return(
             <nav>
                 <div className="nav-wrapper">

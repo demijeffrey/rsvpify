@@ -1,4 +1,7 @@
 import { useState } from "react"
+import { useContext } from "react"
+import { UserContext } from "../context/user"
+import { useNavigate } from "react-router-dom"
 
 function SignUp() {
 
@@ -9,8 +12,35 @@ function SignUp() {
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [errors, setErrors] = useState([])
 
+    const {signup} = useContext(UserContext)
+    const navigate = useNavigate()
+
+    function handleSignup(e) {
+        e.preventDefault()
+        fetch('/signup', {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({
+                first_name: firstName,
+                last_name: lastName,
+                email: email,
+                password: password,
+                password_confirmation: passwordConfirmation
+            })
+        })
+        .then(res => res.json())
+        .then(user => {
+            if(!user.errors) {
+                signup(user)
+                navigate('/')
+            } else {
+                setErrors(user.errors.map(error => <li>{error}</li>))
+            }
+        })
+    }
+
     return(
-        <form className="card container">
+        <form className="card container" onSubmit={(e) => handleSignup(e)}>
             <div className="row">
                 <div className="input-field col s6">
                     <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="validate"/>

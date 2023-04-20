@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
-import { setUser } from "../features/users/userSlice"
+import { UserContext } from "../context/user"
 
 function Login() {
 
@@ -9,6 +9,8 @@ function Login() {
     const [error, setError] = useState('')
 
     const navigate = useNavigate()
+    const {login} = useContext(UserContext)
+
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -24,9 +26,9 @@ function Login() {
         .then(res => {
             if(res.ok) {
                 res.json().then(user => {
-                    setUser(user)
-                    navigate('/')
                     console.log(user)
+                    login(user)
+                    navigate('/home')
                 })
             } else {
                 res.json.then(user => setError(user.error))
