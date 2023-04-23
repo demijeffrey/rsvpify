@@ -7,6 +7,7 @@ import Home from "./Home";
 import UserHome from "./UserHome";
 import UserEvent from "./UserEvent";
 import EditEvent from "./EditEvent";
+import NewEvent from "./NewEvent";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/home" element={<UserHome />} />
         <Route path="/event" element={<UserEvent />} />
         <Route path="/edit" element={<EditEvent />} />
+        <Route path="/new-event" element={<NewEvent />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </div>

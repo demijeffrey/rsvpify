@@ -1,64 +1,65 @@
 import { useState } from "react"
 import { format } from 'date-fns'
 
-function EditEvent({ event }) {
 
-  console.log(event)
+function NewEvent() {
 
-  const [name, setName] = useState(event.name)
-  const [description, setDescription] = useState(event.description)
-  const [location, setLocation] = useState(event.location)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [location, setLocation] = useState('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
-  const [photoURL, setPhotoURL] = useState(event.photo_url)
+  const [photoURL, setPhotoURL] = useState('')
+
+  console.log(time)
 
   function handleSubmit(e) {
     e.preventDefault()
-
+    // const formattedDate = new Date(date).toISOString().slice(0, 10);
+    // const formattedTime = new Date(`${date}T${time}`).toISOString().slice(11, 19);
     const clientDate = new Date(`${date}T${time}`);
     const timezoneOffset = clientDate.getTimezoneOffset();
     const serverDate = new Date(clientDate.getTime() + timezoneOffset * 60000);
-    const formatDate = serverDate.toISOString().slice(0, 10);
-    const formatTime = format(new Date(`1970-01-01T${time}`), 'hh:mm a');
+    const formattedDate = serverDate.toISOString().slice(0, 10);
+    const formattedTime = format(new Date(`1970-01-01T${time}`), 'hh:mm a');
 
     fetch('/events', {
-      method: 'PATCH',
+      method: 'POST',
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({
         name: name,
         description: description,
         location: location,
-        date: formatDate,
-        time: formatTime,
-        photo_url: photoURL,
-        id: event.id
+        date: formattedDate,
+        time: formattedTime,
+        photo_url: photoURL
       })
     })
     .then(res => res.json())
-    .then(data => console.log('patch', data))
+    .then(data => console.log(data))
   }
 
     return (
       <div>
-        <h3 className="center">Edit Event Details</h3>
+        <h1 className="center">Create New Event</h1>
         <div className="row container">
           <form className="col s12" onSubmit={e => handleSubmit(e)}>
             <div className="row">
               <div className="input-field col s6">
                 <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
-                {/* <label>Event Name</label> */}
+                <label>Event Name</label>
               </div>
             </div>
             <div className="row">
               <div className="input-field col s12">
                 <textarea id="description" className="materialize-textarea" value={description} onChange={e => setDescription(e.target.value)}></textarea>
-                {/* <label>Event Description</label> */}
+                <label>Event Description</label>
               </div>
             </div>
             <div className="row">
               <div className="input-field col s6">
                 <input id="location" type="text" value={location} onChange={e => setLocation(e.target.value)} />
-                {/* <label>Event Location</label> */}
+                <label>Event Location</label>
               </div>
             </div>
             <div className="row">
@@ -76,7 +77,7 @@ function EditEvent({ event }) {
             <div className="row">
               <div className="input-field col s6">
                 <input id="photo" type="text" value={photoURL} onChange={e => setPhotoURL(e.target.value)} />
-                {/* <label>Event Photo URL</label> */}
+                <label>Event Photo URL</label>
               </div>
             </div>
             <button type="submit">Submit</button>
@@ -87,4 +88,4 @@ function EditEvent({ event }) {
 
 }
 
-export default EditEvent
+export default NewEvent

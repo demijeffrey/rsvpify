@@ -17,8 +17,8 @@ function EventCard(event) {
             <div className="col s12 m7">
                 <div className="card">
                     <div className="card-image">
-                        <img src={event.event.photo_url && image} />
-                        <span className="card-title">{event.event.name}</span>
+                        <img src={event.event.photo_url || image} />
+                        <span className="card-title black">{event.event.name}</span>
                     </div>
                     <div className="card-content">
                         <p>{event.event.description}</p>

@@ -11,6 +11,12 @@ class EventsController < ApplicationController
         render json: events
     end
 
+    def update
+        event = current_user.events.find(params[:id])
+        event.update!(event_params)
+        render json: event
+    end
+
     private
 
     def event_params
