@@ -2,7 +2,7 @@ class GuestsController < ApplicationController
 
     def create
         # event = Event.find_by(params[:event_id])
-        guest = current_event.guests.create!(guest_params)
+        guest = current_user.guests.create!(guest_params)
         render json: guest, status: :created
     end
 
@@ -25,7 +25,7 @@ class GuestsController < ApplicationController
     private
 
     def guest_params
-        params.permit(:first_name, :last_name, :email, :family, :event_id)
+        params.permit(:first_name, :last_name, :email, :family)
     end
 
     def current_event

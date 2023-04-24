@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom"
 import { format } from 'date-fns'
 import EditEvent from "./EditEvent"
 import { useState } from "react"
-import InviteForm from "./InviteForm"
+import AddContactForm from "./AddContact"
 
 function UserEvent() {
 
@@ -36,7 +36,7 @@ function UserEvent() {
                 <a className="btn-floating btn-large waves-effect waves-light green right" onClick={handleEditClick}><i className="material-icons">edit</i></a>
                     <div className="col s12 m5">
                         <div className="card-panel teal">
-                            <h5 className="white-text">
+                            <h5 className="white-text center">
                                 {event.event.description}
                             </h5>
                             <h5>Where:</h5>
@@ -49,8 +49,8 @@ function UserEvent() {
                 <div className="row">
                     <div className="col s12 m5">
                         <div className="card-panel teal">
-                            <h5 className="white-text">
-                                {event.event.guests}
+                            <h5 className="white-text center">
+                            <h5>Guest List</h5>
                             </h5>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ function UserEvent() {
                 <img className="container center" src={event.event.photo_url || "https://t3.ftcdn.net/jpg/02/68/55/60/360_F_268556012_c1WBaKFN5rjRxR2eyV33znK4qnYeKZjm.jpg"} />
                 <h3>{event.event.name}</h3>
                 <a class="waves-effect waves-light btn-large" onClick={handleInviteClick}><i class="material-icons left">insert_invitation</i>Invite</a>
-                {guestFormFlag ? <InviteForm event={event.event} /> : null}
+                {guestFormFlag ? <AddContactForm event={event.event} /> : null}
             </div>
       </div>
     )
