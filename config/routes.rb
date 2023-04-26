@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
-  resources :invitations
+  resources :invitations do
+    get 'edit/:token', to: 'invitations#edit', as: 'edit_with_token'
+    patch 'update/:token', to: 'invitations#update', as: 'update_with_token'
+  end
+
   resources :guests
-  # resources :events
+
+  resources :events do
+    post 'create_invitation', to: 'invitations#create_invitation'
+  end
 
   get '/current-user', to: 'users#show'
   post '/signup', to: 'users#create'

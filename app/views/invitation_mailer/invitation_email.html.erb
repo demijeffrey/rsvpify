@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Invitation to <%= @invitation.event.name %></title>
+  </head>
+  <body>
+    <p>Dear <%= @invitation.guest.first_name %>,</p>
+    <p>You are cordially invited to <%= @invitation.event.name %> on <%= @invitation.event.date %> at <%= @invitation.event.time %> at <%= @invitation.event.location %>.</p>
+    <% if @guest.family %>
+      <p>Your family is also invited.</p>
+    <% end %>
+    <p>Please RSVP using the following link:</p>
+    <%= link_to 'RSVP', invitation_edit_with_token_url(@invitation, token: @token) %>
+    <p>We hope to see you there!</p>
+  </body>
+</html>

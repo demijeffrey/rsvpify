@@ -40,6 +40,8 @@ module Rsvpify
     config.middleware.use ActionDispatch::Session::CookieStore
 
     config.action_dispatch.cookies_same_site_protection = :strict
+
+    config.action_mailer.default_options = { from: 'noreply@rsvpify.onrender.com' }
     
   end
 end

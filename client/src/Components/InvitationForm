@@ -1,9 +1,0 @@
-function InvitationForm() {
-
-    return (
-        <div></div>
-    )
-
-}
-
-export default InvitationForm

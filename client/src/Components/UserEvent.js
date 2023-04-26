@@ -2,12 +2,12 @@ import { useLocation } from "react-router-dom"
 import { format } from 'date-fns'
 import EditEvent from "./EditEvent"
 import { useState } from "react"
-import AddContactForm from "./AddContact"
+import InvitationForm from "./InvitationForm"
 
 function UserEvent() {
 
     const [formFlag, setFormFlag] = useState(false)
-    const [guestFormFlag, setGuestFormFlag] = useState(false)
+    const [inviteFormFlag, setInviteFormFlag] = useState(false)
 
     const {state} = useLocation()
     const {event} = state
@@ -25,7 +25,7 @@ function UserEvent() {
     }
 
     function handleInviteClick() {
-        setGuestFormFlag(!guestFormFlag)
+        setInviteFormFlag(!inviteFormFlag)
     }
 
     return (
@@ -46,11 +46,20 @@ function UserEvent() {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                <div className="">
                     <div className="col s12 m5">
                         <div className="card-panel teal">
                             <h5 className="white-text center">
-                            <h5>Guest List</h5>
+                            RSVP Pending
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div className="">
+                    <div className="col s12 m5">
+                        <div className="card-panel teal">
+                            <h5 className="white-text center">
+                            Guest List
                             </h5>
                         </div>
                     </div>
@@ -62,8 +71,8 @@ function UserEvent() {
                 <br />
                 <img className="container center" src={event.event.photo_url || "https://t3.ftcdn.net/jpg/02/68/55/60/360_F_268556012_c1WBaKFN5rjRxR2eyV33znK4qnYeKZjm.jpg"} />
                 <h3>{event.event.name}</h3>
-                <a class="waves-effect waves-light btn-large" onClick={handleInviteClick}><i class="material-icons left">insert_invitation</i>Invite</a>
-                {guestFormFlag ? <AddContactForm event={event.event} /> : null}
+                <a className="waves-effect waves-light btn-large" onClick={handleInviteClick}><i className="material-icons left">insert_invitation</i>Invite</a>
+                {inviteFormFlag ? <InvitationForm event={event.event} /> : null}
             </div>
       </div>
     )
