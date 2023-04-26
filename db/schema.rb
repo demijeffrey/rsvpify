@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_013337) do
     t.string "last_name"
     t.string "email"
     t.boolean "family"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_guests_on_user_id"
@@ -61,6 +61,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_013337) do
   end
 
   add_foreign_key "events", "users"
-  add_foreign_key "guests", "users"
   add_foreign_key "invitations", "events"
 end

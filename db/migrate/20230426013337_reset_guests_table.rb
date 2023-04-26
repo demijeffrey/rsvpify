@@ -6,7 +6,8 @@ class ResetGuestsTable < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.string :email
       t.boolean :family
-      t.references :user, null: false, foreign_key: true
+      # t.references :user, null: false, foreign_key: true
+      t.belongs_to :user
       t.timestamps
     end
   end
