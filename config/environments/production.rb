@@ -93,7 +93,7 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
   :user_name => 'apikey',
   # :password => 'Rails.application.credentials.sendgrid_api_key'
-  :password => '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'
+  :password => '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',
   :domain => 'rsvpify.onrender.com',
   :address => 'smtp.sendgrid.net',
   :port => 587,
