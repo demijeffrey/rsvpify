@@ -61,6 +61,9 @@ function UserEvent() {
                             <h5 className="white-text center">
                             Guest List
                             </h5>
+                            {event.event.guests.map(g => {
+                                return <p>{g.first_name} {g.last_name}</p>
+                            })}
                         </div>
                     </div>
                 </div>

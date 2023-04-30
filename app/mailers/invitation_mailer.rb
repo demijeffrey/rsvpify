@@ -10,6 +10,11 @@ class InvitationMailer < ApplicationMailer
     #     mail(to: guest.email, subject: "Invitation to #{@event.name}")
     # end
 
+    def welcome
+        @greeting = "Hi"
+        mail to: "demiashmore@yahoo.com"
+      end
+
     def invitation_email(invitation)
         @invitation = invitation
         @guest = invitation.guest
