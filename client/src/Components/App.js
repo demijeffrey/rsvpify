@@ -8,6 +8,7 @@ import UserHome from "./UserHome";
 import UserEvent from "./UserEvent";
 import EditEvent from "./EditEvent";
 import NewEvent from "./NewEvent";
+import RSVPForm from "./RSVPForm";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/event" element={<UserEvent />} />
         <Route path="/edit" element={<EditEvent />} />
         <Route path="/new-event" element={<NewEvent />} />
+        <Route path="/invitations/:id/edit/:token" element={<RSVPForm />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </div>

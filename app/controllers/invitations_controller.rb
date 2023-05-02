@@ -13,6 +13,7 @@ class InvitationsController < ApplicationController
         @guests = Guest.where(id: params[:guest_ids])
         @guests.each do |guest|
             invitation = @event.invitations.create!(guest: guest, token: SecureRandom.hex(16))
+            # byebug
             InvitationMailer.invitation_email(invitation).deliver_later
           end
     end

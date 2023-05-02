@@ -12,7 +12,8 @@ class InvitationMailer < ApplicationMailer
 
     def welcome
         @greeting = "Hi"
-        mail to: "demiashmore@yahoo.com"
+        # mail to: "demiashmore@yahoo.com"
+        mail(to: "demiashmore@yahoo.com", subject: 'Welcome to My Awesome Site')
       end
 
     def invitation_email(invitation)

@@ -90,13 +90,22 @@ Rails.application.configure do
   
   config.action_mailer.delivery_method = :smtp
 
-  ActionMailer::Base.smtp_settings = {
-  :user_name => 'apikey',
-  :password => 'Rails.application.credentials.sendgrid_api_key',
-  :domain => 'rsvpify.onrender.com',
-  :address => 'smtp.sendgrid.net',
-  :port => 587,
-  :authentication => :plain,
+#   ActionMailer::Base.smtp_settings = {
+#   :user_name => 'apikey',
+#   :password => 'Rails.application.credentials.sendgrid_api_key',
+#   :domain => 'rsvpify.onrender.com',
+#   :address => 'smtp.sendgrid.net',
+#   :port => 587,
+#   :authentication => :plain,
+#   :enable_starttls_auto => true
+# }
+
+config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => "demijeffrey@gmail.com",
+  :password             => "udejohmdrgclfnzf",
+  :authentication       => "plain",
   :enable_starttls_auto => true
 }
 
