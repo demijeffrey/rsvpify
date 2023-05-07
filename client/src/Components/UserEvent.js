@@ -62,13 +62,13 @@ function UserEvent() {
                             Guest List
                             </h5>
                             {event.event.guests.map(g => {
-                                return <p>{g.first_name} {g.last_name}</p>
+                                return <p key={g.id}>{g.first_name} {g.last_name}</p>
                             })}
                         </div>
                     </div>
                 </div>
                 <br />
-                {formFlag ? <EditEvent event={event.event} /> : null}
+                <div className="row">{formFlag ? <EditEvent event={event.event} /> : null}</div>
             </div>
             <div className="col s5 pull-s7">
                 <br />
