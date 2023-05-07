@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
   resources :invitations do
-    get 'edit/:token', to: 'invitations#edit', as: 'edit_with_token'
-    patch 'update/:token', to: 'invitations#update', as: 'update_with_token'
+    get 'rsvp/:token', to: 'invitations#rsvp', as: 'rsvp_with_token'
+    # patch 'update/:token', to: 'invitations#update', as: 'update_with_token'
   end
+
+  get '/:token', to: 'invitations#show'
+  patch '/invitations', to: 'invitations#update'
 
   resources :guests
 

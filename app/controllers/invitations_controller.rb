@@ -18,24 +18,21 @@ class InvitationsController < ApplicationController
           end
     end
 
-    def edit
+    def rsvp
         @invitation = Invitation.find_by(token: params[:token])
         render json: @invitation
     end
     
     def update
-        @invitation = Invitation.find_by(token: params[:token])
-        if @invitation.update(invitation_params)
-            # handle successful update
-        else
-            # handle validation errors
-        end
+        invitation = Invitation.find_by(token: params[:token])
+        invitation.update!(invitation_params)
+        # byebug
+        render json: invitation
     end
 
-    def index
-    end
-
-    def update
+    def show
+        invite = Invitation.find_by(token: params[:token])
+        render json: invite
     end
 
     def destroy
