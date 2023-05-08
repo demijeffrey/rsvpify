@@ -26,13 +26,12 @@ function UserEvent() {
         const confirmedGuests = event.event.invitations.map(invite => {
             if(invite.rsvp_status === "attending") {
                 const guest = event.event.guests.find(g => g.id === invite.guest_id)
-                console.log(guest)
+                // console.log(guest)
                 return guest
             } else {
                 return null
             }
         })
-
         const filteredConfirmedGuests = confirmedGuests.filter(guest => guest !== null)
         setConfirmed(filteredConfirmedGuests)
     }, [])
@@ -51,7 +50,7 @@ function UserEvent() {
         <div className="row">
             <div className="col s7 push-s5">
                 <br />
-                <div className="row">
+                <div className="">
                 <a className="btn-floating btn-large waves-effect waves-light green right" onClick={handleEditClick}><i className="material-icons">edit</i></a>
                     <div className="col s12 m5">
                         <div className="card-panel teal">
@@ -65,7 +64,7 @@ function UserEvent() {
                         </div>
                     </div>
                 </div>
-                <div className="">
+                <div className="row">
                     <div className="col s12 m5">
                         <div className="card-panel teal">
                             <h5 className="white-text center">
@@ -77,15 +76,12 @@ function UserEvent() {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                <div className="">
                     <div className="col s12 m5">
                         <div className="card-panel teal">
                             <h5 className="white-text center">
-                                Invites Sent
+                                Guest Messages
                             </h5>
-                            {event.event.guests.map(g => {
-                                return <p key={g.id}>{g.first_name} {g.last_name}</p>
-                            })}
                         </div>
                     </div>
                 </div>
@@ -98,6 +94,18 @@ function UserEvent() {
                 <h3>{event.event.name}</h3>
                 <a className="waves-effect waves-light btn-large" onClick={handleInviteClick}><i className="material-icons left">insert_invitation</i>Invite</a>
                 {inviteFormFlag ? <InvitationForm event={event.event} /> : null}
+                <div className="row">
+                    <div className="col s12 m5">
+                        <div className="card-panel teal">
+                            <h5 className="white-text center">
+                                Invites Sent
+                            </h5>
+                            {event.event.guests.map(g => {
+                                return <p key={g.id}>{g.first_name} {g.last_name}</p>
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
       </div>
     )
