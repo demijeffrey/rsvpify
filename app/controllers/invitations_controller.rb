@@ -12,7 +12,7 @@ class InvitationsController < ApplicationController
         @event = Event.find(params[:event_id])
         @guests = Guest.where(id: params[:guest_ids])
         @guests.each do |guest|
-            invitation = @event.invitations.create!(guest: guest, token: SecureRandom.hex(16))
+            invitation = @event.invitations.create!(guest: guest, token: SecureRandom.hex(16), rsvp_status: "pending")
             # byebug
             InvitationMailer.invitation_email(invitation).deliver_later
           end

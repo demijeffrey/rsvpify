@@ -1,13 +1,14 @@
 import { useLocation } from "react-router-dom"
 import { format } from 'date-fns'
 import EditEvent from "./EditEvent"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import InvitationForm from "./InvitationForm"
 
 function UserEvent() {
 
     const [formFlag, setFormFlag] = useState(false)
     const [inviteFormFlag, setInviteFormFlag] = useState(false)
+    const [confirmed, setConfirmed] = useState([])
 
     const {state} = useLocation()
     const {event} = state
@@ -18,7 +19,23 @@ function UserEvent() {
     const time = event.event.time.substring(11, 16);
     const formattedTime = format(new Date(`1970-01-01T${time}`), 'hh:mm a');
 
-    console.log(event.event.guests)
+    console.log(event.event.invitations)
+
+    
+    useEffect(() => {
+        const confirmedGuests = event.event.invitations.map(invite => {
+            if(invite.rsvp_status === "attending") {
+                const guest = event.event.guests.find(g => g.id === invite.guest_id)
+                console.log(guest)
+                return guest
+            } else {
+                return null
+            }
+        })
+
+        const filteredConfirmedGuests = confirmedGuests.filter(guest => guest !== null)
+        setConfirmed(filteredConfirmedGuests)
+    }, [])
 
     function handleEditClick() {
         setFormFlag(!formFlag)
@@ -27,6 +44,8 @@ function UserEvent() {
     function handleInviteClick() {
         setInviteFormFlag(!inviteFormFlag)
     }
+
+    // console.log(confirmed)
 
     return (
         <div className="row">
@@ -50,16 +69,19 @@ function UserEvent() {
                     <div className="col s12 m5">
                         <div className="card-panel teal">
                             <h5 className="white-text center">
-                            RSVP Pending
+                            Attending
                             </h5>
+                            {confirmed !== [] ? confirmed.map(g => {
+                                return <p key={g.id}>{g.first_name} {g.last_name}</p>
+                            }) : null}
                         </div>
                     </div>
                 </div>
-                <div className="">
+                <div className="row">
                     <div className="col s12 m5">
                         <div className="card-panel teal">
                             <h5 className="white-text center">
-                            Guest List
+                                Invites Sent
                             </h5>
                             {event.event.guests.map(g => {
                                 return <p key={g.id}>{g.first_name} {g.last_name}</p>
