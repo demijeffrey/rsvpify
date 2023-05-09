@@ -11,8 +11,10 @@ function UserProvider({children}) {
         fetch('/current-user')
             .then(res => res.json())
             .then(currentUser => {
+                console.log(currentUser)
                 setUser(currentUser)
-                currentUser.error ? setLoggedIn(false) : setLoggedIn(true)
+                // currentUser.error ? setLoggedIn(false) : setLoggedIn(true)
+                currentUser === null ? setLoggedIn(false) : setLoggedIn(true)
             })
     }, [])
 

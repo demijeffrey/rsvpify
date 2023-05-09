@@ -46,7 +46,7 @@ function UserEvent() {
     const displayMessages = event.event.invitations.map(i => {
         if(i.message !== null) {
             const guest = event.event.guests.find(g => g.id === i.guest_id)
-            return <li>{i.message} -- {guest.first_name}</li>
+            return <li key={i.id}>{i.message} -- {guest.first_name}</li>
         } else {
             return null
         }

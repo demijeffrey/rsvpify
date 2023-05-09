@@ -14,7 +14,6 @@ function Login() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        // console.log('submitting')
         fetch('/login', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
@@ -31,7 +30,8 @@ function Login() {
                     navigate('/home')
                 })
             } else {
-                res.json.then(user => setError(user.error))
+                console.log(res)
+                res.json().then(user => setError(user.error))
             }
         })
     }
