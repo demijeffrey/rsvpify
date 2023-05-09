@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/:token', to: 'invitations#show'
   patch '/invitations', to: 'invitations#update'
+  delete '/invitations', to: 'invitations#destroy'
 
   resources :guests
 

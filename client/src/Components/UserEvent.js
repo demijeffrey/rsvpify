@@ -3,12 +3,9 @@ import { format } from 'date-fns'
 import EditEvent from "./EditEvent"
 import { useState, useEffect } from "react"
 import InvitationForm from "./InvitationForm"
+import EditEventGuests from "./EditEventGuests"
 
 function UserEvent() {
-
-    const [formFlag, setFormFlag] = useState(false)
-    const [inviteFormFlag, setInviteFormFlag] = useState(false)
-    const [confirmed, setConfirmed] = useState([])
 
     const {state} = useLocation()
     const {event} = state
@@ -18,6 +15,12 @@ function UserEvent() {
 
     const time = event.event.time.substring(11, 16);
     const formattedTime = format(new Date(`1970-01-01T${time}`), 'hh:mm a');
+
+    const [formFlag, setFormFlag] = useState(false)
+    const [inviteFormFlag, setInviteFormFlag] = useState(false)
+    const [confirmed, setConfirmed] = useState([])
+    const [guestFlag, setGuestFlag] = useState(true)
+    const [allGuests, setAllGuests] = useState(event.event.guests)
 
     console.log(event.event.invitations)
 
@@ -57,7 +60,6 @@ function UserEvent() {
             <div className="col s7 push-s5">
                 <br />
                 <div className="">
-                <a className="btn-floating btn-large waves-effect waves-light green right" onClick={handleEditClick}><i className="material-icons">edit</i></a>
                     <div className="col s12 m5">
                         <div className="card-panel teal">
                             <h5 className="white-text center">
@@ -70,21 +72,23 @@ function UserEvent() {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                {guestFlag ? <div className="row">
                     <div className="col s12 m5">
                         <div className="card-panel grey lighten-3">
                             <h5 className="black-text center">
                             Guest List
                             </h5>
                             {confirmed !== [] ? confirmed.map(g => {
-                                return <h6 key={g.id} className="green-text darken-2">{g.first_name} {g.last_name}</h6>
+                                return <div><h6 key={g.id} className="green-text darken-2">{g.first_name} {g.last_name}</h6></div>
                             }) : null}
-                            {event.event.guests.map(g => {
+                            {allGuests.map(g => {
                                 return confirmed.includes(g) ? null :  <h6 key={g.id} className="red-text darken-2">{g.first_name} {g.last_name}</h6>
                             })}
+                            <br />
+                            <a className="waves-effect waves-light btn-small center" onClick={() => setGuestFlag(!guestFlag)}>Remove Guests</a>
                         </div>
                     </div>
-                </div>
+                </div> : <EditEventGuests event={event.event} guestFlag={guestFlag} setGuestFlag={setGuestFlag} allGuests={allGuests} setAllGuests={setAllGuests} />}
                 <div className="">
                     <div className="">
                         <div className="card-panel teal">
@@ -102,6 +106,8 @@ function UserEvent() {
                 <br />
                 <img className="container center" src={event.event.photo_url || "https://t3.ftcdn.net/jpg/02/68/55/60/360_F_268556012_c1WBaKFN5rjRxR2eyV33znK4qnYeKZjm.jpg"} />
                 <h3>{event.event.name}</h3>
+                <a className="waves-effect waves-light btn-large" onClick={handleEditClick}><i className="material-icons left">edit</i>Edit Event</a>
+                <br />
                 <a className="waves-effect waves-light btn-large" onClick={handleInviteClick}><i className="material-icons left">insert_invitation</i>Invite</a>
                 {inviteFormFlag ? <InvitationForm event={event.event} /> : null}
                 <div className="row">
