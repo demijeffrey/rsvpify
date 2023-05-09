@@ -10,13 +10,18 @@ function UserHome() {
     console.log(user.guests)
 
     const [contactFormFlag, setContactFormFlag] = useState(false)
+    const [contacts, setContacts] = useState(user.guests)
 
     const navigate = useNavigate()
 
     const displayEvents = user.events && user.events.map(e => <EventCard key={e.id} event={e} />)
 
-    const displayGuests = user.guests && user.guests.map(guest => {
-        // return <li key={guest.id}>{guest.first_name} {guest.last_name}</li>
+    // const displayGuests = user.guests && user.guests.map(guest => {
+    //     return <ul key={guest.id}>{guest.first_name} {guest.last_name}
+    //         <li>{guest.email}</li>
+    //     </ul>
+    // })
+    const displayGuests = contacts.map(guest => {
         return <ul key={guest.id}>{guest.first_name} {guest.last_name}
             <li>{guest.email}</li>
         </ul>
@@ -38,7 +43,7 @@ function UserHome() {
                     <a className="waves-effect waves-light btn-large" onClick={handleNewClick}><i className="material-icons right">add</i>New Event</a>
                     <br />
                     <a className="waves-effect waves-light btn-large" onClick={handleContactClick}><i className="material-icons right">person_add</i>New Contact</a>
-                    {contactFormFlag ? <AddContactForm contactFormFlag={contactFormFlag} setContactFormFlag={setContactFormFlag} /> : null}
+                    {contactFormFlag ? <AddContactForm contactFormFlag={contactFormFlag} setContactFormFlag={setContactFormFlag} contacts={contacts} setContacts={setContacts} /> : null}
                     <br />
                     <h5 className="center">Contacts</h5>
                     {displayGuests}

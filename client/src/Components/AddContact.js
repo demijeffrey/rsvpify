@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function AddContactForm({ event, contactFormFlag, setContactFormFlag }) {
+function AddContactForm({ event, contactFormFlag, setContactFormFlag, contacts, setContacts }) {
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -25,6 +25,7 @@ function AddContactForm({ event, contactFormFlag, setContactFormFlag }) {
         .then(data => {
             console.log(data)
             setContactFormFlag(!contactFormFlag)
+            setContacts([...contacts, data])
         })
     }
 

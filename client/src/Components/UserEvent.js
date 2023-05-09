@@ -72,13 +72,16 @@ function UserEvent() {
                 </div>
                 <div className="row">
                     <div className="col s12 m5">
-                        <div className="card-panel teal">
-                            <h5 className="white-text center">
-                            Attending
+                        <div className="card-panel grey lighten-3">
+                            <h5 className="black-text center">
+                            Guest List
                             </h5>
                             {confirmed !== [] ? confirmed.map(g => {
-                                return <p key={g.id}>{g.first_name} {g.last_name}</p>
+                                return <h6 key={g.id} className="green-text darken-2">{g.first_name} {g.last_name}</h6>
                             }) : null}
+                            {event.event.guests.map(g => {
+                                return confirmed.includes(g) ? null :  <h6 key={g.id} className="red-text darken-2">{g.first_name} {g.last_name}</h6>
+                            })}
                         </div>
                     </div>
                 </div>

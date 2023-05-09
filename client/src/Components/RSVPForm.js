@@ -4,7 +4,7 @@ function RSVPForm({ token }) {
 
     const [plusOne, setPlusOne] = useState(false)
     const [rsvpStatus, setRsvpStatus] = useState('')
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState(null)
 
     console.log(token)
 
