@@ -26,7 +26,6 @@ function UserEvent() {
         const confirmedGuests = event.event.invitations.map(invite => {
             if(invite.rsvp_status === "attending") {
                 const guest = event.event.guests.find(g => g.id === invite.guest_id)
-                // console.log(guest)
                 return guest
             } else {
                 return null
@@ -44,7 +43,14 @@ function UserEvent() {
         setInviteFormFlag(!inviteFormFlag)
     }
 
-    // console.log(confirmed)
+    const displayMessages = event.event.invitations.map(i => {
+        if(i.message !== null) {
+            const guest = event.event.guests.find(g => g.id === i.guest_id)
+            return <li>{i.message} -- {guest.first_name}</li>
+        } else {
+            return null
+        }
+    })
 
     return (
         <div className="row">
@@ -77,11 +83,12 @@ function UserEvent() {
                     </div>
                 </div>
                 <div className="">
-                    <div className="col s12 m5">
+                    <div className="">
                         <div className="card-panel teal">
                             <h5 className="white-text center">
                                 Guest Messages
                             </h5>
+                            {displayMessages}
                         </div>
                     </div>
                 </div>

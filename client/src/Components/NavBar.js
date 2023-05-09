@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { UserContext } from "../context/user"
 import { useContext } from "react"
 
@@ -23,9 +23,9 @@ function NavBar() {
                 <div className="nav-wrapper">
                     <a href="#" className="brand-logo right">RSVPify</a>
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="collapsible.html">JavaScript</a></li>
+                        <li><NavLink to="/login">Login</NavLink></li>
+                        <li><NavLink to="/signup">Sign Up</NavLink></li>
+                        <li><NavLink to="collapsible.html">JavaScript</NavLink></li>
                     </ul>
                 </div>
           </nav>
@@ -36,9 +36,9 @@ function NavBar() {
                 <div className="nav-wrapper">
                     <a href="#" className="brand-logo right">RSVPify</a>
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
-                        <li><a onClick={handleLogout}>Logout</a></li>
-                        <li><a href="/home">My Events</a></li>
-                        <li><a href="collapsible.html">JavaScript</a></li>
+                        <li><NavLink onClick={handleLogout}>Logout</NavLink></li>
+                        <li><NavLink to="/home">My Events</NavLink></li>
+                        <li><NavLink to="collapsible.html">JavaScript</NavLink></li>
                     </ul>
                 </div>
           </nav>
