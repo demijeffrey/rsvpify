@@ -14,13 +14,16 @@ function UserHome() {
 
     const navigate = useNavigate()
 
-    const displayEvents = user.events && user.events.map(e => <EventCard key={e.id} event={e} />)
+    const displayEvents = user.events.map(e => {
+        const currentDate = new Date()
+        if(e.date){
+            const eventDate = new Date(e.date);
+            if(eventDate > currentDate){
+                return <EventCard key={e.id} event={e} />;
+            }
+        }
+    })
 
-    // const displayGuests = user.guests && user.guests.map(guest => {
-    //     return <ul key={guest.id}>{guest.first_name} {guest.last_name}
-    //         <li>{guest.email}</li>
-    //     </ul>
-    // })
     const displayGuests = contacts.map(guest => {
         return <ul key={guest.id}>{guest.first_name} {guest.last_name}
             <li>{guest.email}</li>

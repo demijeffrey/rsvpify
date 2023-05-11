@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { UserContext } from "../context/user"
+import UserHome from "./UserHome"
 
 function Home() {
 
@@ -11,7 +12,8 @@ function Home() {
         )
     } else {
         return (
-            <h1>Hello, {user.first_name}</h1>
+            // <h1>Hello, {user.first_name}</h1>
+            <UserHome />
         )
     }
 }

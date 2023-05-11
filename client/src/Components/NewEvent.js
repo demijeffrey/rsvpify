@@ -45,7 +45,8 @@ function NewEvent() {
     .then(data => {
       console.log(data)
       addUserEvent(data)
-      navigate('/home')
+      // navigate('/home')
+      navigate('/')
     })
   }
 

@@ -9,6 +9,7 @@ import UserEvent from "./UserEvent";
 import EditEvent from "./EditEvent";
 import NewEvent from "./NewEvent";
 import RSVP from "./RSVP";
+import PastEvents from "./PastEvents";
 
 function App() {
 
@@ -18,11 +19,12 @@ function App() {
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<UserHome />} />
+        {/* <Route path="/home" element={<UserHome />} /> */}
         <Route path="/event" element={<UserEvent />} />
         <Route path="/edit" element={<EditEvent />} />
         <Route path="/new-event" element={<NewEvent />} />
         <Route path="/invitations/:id/rsvp/:token" element={<RSVP />} />
+        <Route path="/past-events" element={<PastEvents />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </div>

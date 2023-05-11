@@ -60,7 +60,8 @@ function UserEvent() {
                 method: 'DELETE'
             })
             removeUserEvent(event.event)
-            navigate('/home')
+            // navigate('/home')
+            navigate('/')
         }
     }
 
