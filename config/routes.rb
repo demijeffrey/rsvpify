@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/events', to: 'events#index'
   post '/events', to: 'events#create'
   patch '/events', to: 'events#update'
+  delete 'events/:id', to: 'events#destroy'
 
   # get '/guests', to: 'guests#index'
   post '/guests', to: 'guests#create'

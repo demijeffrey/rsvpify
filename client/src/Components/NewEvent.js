@@ -1,5 +1,7 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { format } from 'date-fns'
+import { useNavigate } from "react-router-dom"
+import { UserContext } from "../context/user"
 
 
 function NewEvent() {
@@ -10,6 +12,10 @@ function NewEvent() {
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [photoURL, setPhotoURL] = useState('')
+
+  const {addUserEvent} = useContext(UserContext)
+
+  const navigate = useNavigate()
 
   console.log(time)
 
@@ -36,7 +42,11 @@ function NewEvent() {
       })
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data)
+      addUserEvent(data)
+      navigate('/home')
+    })
   }
 
     return (

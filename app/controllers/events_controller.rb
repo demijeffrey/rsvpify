@@ -6,7 +6,6 @@ class EventsController < ApplicationController
     end
 
     def index
-        # events = Event.all
         events = current_user.events.all
         render json: events
     end
@@ -15,6 +14,11 @@ class EventsController < ApplicationController
         event = current_user.events.find(params[:id])
         event.update!(event_params)
         render json: event
+    end
+
+    def destroy
+        event = Event.find(params[:id])
+        event.destroy
     end
 
     private

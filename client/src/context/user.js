@@ -6,6 +6,7 @@ function UserProvider({children}) {
 
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
+    const [userEvents, setUserEvents] = useState([])
 
     useEffect(() => {
         fetch('/current-user')
@@ -13,6 +14,7 @@ function UserProvider({children}) {
             .then(currentUser => {
                 console.log(currentUser)
                 setUser(currentUser)
+                setUserEvents(currentUser.events)
                 // currentUser.error ? setLoggedIn(false) : setLoggedIn(true)
                 currentUser === null ? setLoggedIn(false) : setLoggedIn(true)
             })
@@ -33,8 +35,17 @@ function UserProvider({children}) {
         setLoggedIn(false)
     }
 
+    const addUserEvent = (event) => {
+        setUserEvents([...userEvents, event])
+    }
+
+    const removeUserEvent = (event) => {
+        const newEventList = userEvents.filter((e) => e.id !== event.id)
+        setUserEvents(newEventList)
+    }
+
     return (
-        <UserContext.Provider value={{user, loggedIn, signup, login, logout}}>
+        <UserContext.Provider value={{user, loggedIn, signup, login, logout, addUserEvent, removeUserEvent}}>
             {children}
         </UserContext.Provider>
     )

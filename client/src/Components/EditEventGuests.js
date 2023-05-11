@@ -23,7 +23,7 @@ function EditEventGuests({ event, guestFlag, setGuestFlag, allGuests, setAllGues
                     <div className="col s12 m5">
                         <div className="card-panel grey lighten-3">
                             <h5 className="black-text center">
-                            Guest Listssss
+                            Manage Guest List
                             </h5>
                             {guests.map(g => {
                                 return (

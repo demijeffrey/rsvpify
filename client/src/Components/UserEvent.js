@@ -1,14 +1,18 @@
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { format } from 'date-fns'
 import EditEvent from "./EditEvent"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import InvitationForm from "./InvitationForm"
 import EditEventGuests from "./EditEventGuests"
+import { UserContext } from "../context/user"
 
 function UserEvent() {
 
     const {state} = useLocation()
     const {event} = state
+
+    const {removeUserEvent} = useContext(UserContext)
+    const navigate = useNavigate()
 
     const date = new Date(event.event.date.substring(0, 10));
     const formattedDate = format(date, 'MM-dd-yyyy');
@@ -23,7 +27,6 @@ function UserEvent() {
     const [allGuests, setAllGuests] = useState(event.event.guests)
 
     console.log(event.event.invitations)
-
     
     useEffect(() => {
         const confirmedGuests = event.event.invitations.map(invite => {
@@ -46,6 +49,21 @@ function UserEvent() {
         setInviteFormFlag(!inviteFormFlag)
     }
 
+    function handleCancelClick() {
+        // fetch(`events/${event.event.id}`, {
+        //     method: 'DELETE'
+        // })
+        // removeUserEvent(event.event)
+        // navigate('/home')
+        if (window.confirm('Are you sure you want to cancel this event?')) {
+            fetch(`/events/${event.event.id}`, {
+                method: 'DELETE'
+            })
+            removeUserEvent(event.event)
+            navigate('/home')
+        }
+    }
+
     const displayMessages = event.event.invitations.map(i => {
         if(i.message !== null) {
             const guest = event.event.guests.find(g => g.id === i.guest_id)
@@ -59,17 +77,15 @@ function UserEvent() {
         <div className="row">
             <div className="col s7 push-s5">
                 <br />
-                <div className="">
-                    <div className="col s12 m5">
-                        <div className="card-panel teal">
-                            <h5 className="white-text center">
-                                {event.event.description}
-                            </h5>
-                            <h5>Where:</h5>
-                            <p>{event.event.location}</p>
-                            <h5>When:</h5>
-                            <p>{formattedDate} at {formattedTime}</p>
-                        </div>
+                <div className="col s12 m5">
+                    <div className="card-panel teal">
+                        <h5 className="white-text center">
+                            {event.event.description}
+                        </h5>
+                        <h5>Where:</h5>
+                        <p>{event.event.location}</p>
+                        <h5>When:</h5>
+                        <p>{formattedDate} at {formattedTime}</p>
                     </div>
                 </div>
                 {guestFlag ? <div className="row">
@@ -89,15 +105,11 @@ function UserEvent() {
                         </div>
                     </div>
                 </div> : <EditEventGuests event={event.event} guestFlag={guestFlag} setGuestFlag={setGuestFlag} allGuests={allGuests} setAllGuests={setAllGuests} />}
-                <div className="">
-                    <div className="">
-                        <div className="card-panel teal">
-                            <h5 className="white-text center">
-                                Guest Messages
-                            </h5>
-                            {displayMessages}
-                        </div>
-                    </div>
+                <div className="card-panel teal">
+                    <h5 className="white-text center">
+                        Guest Messages
+                    </h5>
+                    {displayMessages}
                 </div>
                 <br />
                 <div className="row">{formFlag ? <EditEvent event={event.event} /> : null}</div>
@@ -109,19 +121,9 @@ function UserEvent() {
                 <a className="waves-effect waves-light btn-large" onClick={handleEditClick}><i className="material-icons left">edit</i>Edit Event</a>
                 <br />
                 <a className="waves-effect waves-light btn-large" onClick={handleInviteClick}><i className="material-icons left">insert_invitation</i>Invite</a>
+                <br />
+                <a className="waves-effect waves-light btn-large red" onClick={handleCancelClick}><i className="material-icons left">edit</i>Cancel Event</a>
                 {inviteFormFlag ? <InvitationForm event={event.event} /> : null}
-                <div className="row">
-                    <div className="col s12 m5">
-                        <div className="card-panel teal">
-                            <h5 className="white-text center">
-                                Invites Sent
-                            </h5>
-                            {event.event.guests.map(g => {
-                                return <p key={g.id}>{g.first_name} {g.last_name}</p>
-                            })}
-                        </div>
-                    </div>
-                </div>
             </div>
       </div>
     )
