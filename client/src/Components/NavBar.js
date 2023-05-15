@@ -25,7 +25,6 @@ function NavBar() {
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
                         <li><NavLink to="/login">Login</NavLink></li>
                         <li><NavLink to="/signup">Sign Up</NavLink></li>
-                        <li><NavLink to="collapsible.html">JavaScript</NavLink></li>
                     </ul>
                 </div>
           </nav>

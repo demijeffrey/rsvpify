@@ -1,10 +1,13 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function RSVPForm({ token }) {
 
     const [plusOne, setPlusOne] = useState(false)
     const [rsvpStatus, setRsvpStatus] = useState('')
     const [message, setMessage] = useState(null)
+
+    const navigate = useNavigate()
 
     console.log(token)
 
@@ -23,6 +26,7 @@ function RSVPForm({ token }) {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            navigate('/thank-you')
         })
         .catch(error => {
             console.error(error);
