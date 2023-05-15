@@ -6,7 +6,7 @@
   </head>
   <body>
     <p>Dear <%= @invitation.guest.first_name %>,</p>
-    <p>You are cordially invited to <%= @invitation.event.name %> on <%= @invitation.event.date %> at <%= @invitation.event.time %> at <%= @invitation.event.location %>.</p>
+    <p>You are cordially invited to <%= @invitation.event.name %> on <%= @invitation.event.date.strftime('%A, %B %e, %Y') %> at <%= @invitation.event.time.strftime('%l:%M %p') %> at <%= @invitation.event.location %>.</p>
     <% if @guest.family %>
       <p>Your family is also invited.</p>
     <% end %>
