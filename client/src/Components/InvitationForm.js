@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../context/user"
 
-function InvitationForm({ event }) {
+function InvitationForm({ event, addGuest, inviteFormFlag, setInviteFormFlag }) {
 
     const {user} = useContext(UserContext)
     console.log(event)
@@ -38,6 +38,8 @@ function InvitationForm({ event }) {
         .then(res => {
             if(res.ok) {
                 console.log('Invitations sent successfully!')
+                addGuest(selectedGuests)
+                setInviteFormFlag(!inviteFormFlag)
             } else {
                 console.log('Error sending invitations.')
             }

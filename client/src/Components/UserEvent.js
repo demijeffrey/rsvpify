@@ -39,7 +39,12 @@ function UserEvent() {
         })
         const filteredConfirmedGuests = confirmedGuests.filter(guest => guest !== null)
         setConfirmed(filteredConfirmedGuests)
-    }, [])
+    }, [allGuests])
+
+    function addGuest(selectedGuests) {
+        console.log(selectedGuests)
+        setAllGuests([...allGuests, ...selectedGuests])
+    }
 
     function handleEditClick() {
         setFormFlag(!formFlag)
@@ -50,11 +55,6 @@ function UserEvent() {
     }
 
     function handleCancelClick() {
-        // fetch(`events/${event.event.id}`, {
-        //     method: 'DELETE'
-        // })
-        // removeUserEvent(event.event)
-        // navigate('/home')
         if (window.confirm('Are you sure you want to cancel this event?')) {
             fetch(`/events/${event.event.id}`, {
                 method: 'DELETE'
@@ -124,7 +124,7 @@ function UserEvent() {
                 <a className="waves-effect waves-light btn-large" onClick={handleInviteClick}><i className="material-icons left">insert_invitation</i>Invite</a>
                 <br />
                 <a className="waves-effect waves-light btn-large red" onClick={handleCancelClick}><i className="material-icons left">edit</i>Cancel Event</a>
-                {inviteFormFlag ? <InvitationForm event={event.event} /> : null}
+                {inviteFormFlag ? <InvitationForm event={event.event} inviteFormFlag={inviteFormFlag} setInviteFormFlag={setInviteFormFlag} addGuest={addGuest} /> : null}
             </div>
       </div>
     )

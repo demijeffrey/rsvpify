@@ -33,6 +33,7 @@ function SignUp() {
             if(!user.errors) {
                 signup(user)
                 navigate('/')
+                console.log('submitted')
             } else {
                 setErrors(user.errors.map(error => <li>{error}</li>))
             }
@@ -63,6 +64,7 @@ function SignUp() {
                     <label>Password Confirmation</label>
                 </div>
             </div>
+            <button type="submit">Sign in</button>
             {errors}
         </form>
     )
