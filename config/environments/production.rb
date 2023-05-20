@@ -103,7 +103,7 @@ Rails.application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :user_name            => "rsvpify123@gmail.com",
-    :password             => 'Rails.application.credentials[:gmail_api_key]',
+    :password             => Rails.application.credentials[:gmail_api_key],
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
