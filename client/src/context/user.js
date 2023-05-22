@@ -12,13 +12,16 @@ function UserProvider({children}) {
         fetch('/current-user')
             .then(res => res.json())
             .then(currentUser => {
-                console.log(currentUser)
-                setUser(currentUser)
-                setUserEvents(currentUser.events)
-                // currentUser.error ? setLoggedIn(false) : setLoggedIn(true)
-                currentUser === null ? setLoggedIn(false) : setLoggedIn(true)
+                // debugger
+                if(currentUser === null) {
+                    setLoggedIn(false)
+                } else {
+                    setUser(currentUser)
+                    setUserEvents(currentUser.events)
+                    setLoggedIn(true)
+                }
             })
-    }, [userEvents])
+    }, [])
 
     const signup = (user) => {
         setUser(user)

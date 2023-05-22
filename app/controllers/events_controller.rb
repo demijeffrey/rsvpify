@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+    before_action :authorize
+
     def create
         event = current_user.events.create!(event_params)
         render json: event, status: :created

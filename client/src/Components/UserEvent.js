@@ -46,22 +46,13 @@ function UserEvent() {
         setAllGuests([...allGuests, ...selectedGuests])
     }
 
-    function handleEditClick() {
-        setFormFlag(!formFlag)
-    }
-
-    function handleInviteClick() {
-        setInviteFormFlag(!inviteFormFlag)
-    }
-
     function handleCancelClick() {
         if (window.confirm('Are you sure you want to cancel this event?')) {
             fetch(`/events/${event.event.id}`, {
                 method: 'DELETE'
             })
             removeUserEvent(event.event)
-            // navigate('/home')
-            navigate('/')
+            navigate('/home')
         }
     }
 
@@ -119,9 +110,9 @@ function UserEvent() {
                 <br />
                 <img className="container center" src={event.event.photo_url || "https://t3.ftcdn.net/jpg/02/68/55/60/360_F_268556012_c1WBaKFN5rjRxR2eyV33znK4qnYeKZjm.jpg"} />
                 <h3>{event.event.name}</h3>
-                <a className="waves-effect waves-light btn-large" onClick={handleEditClick}><i className="material-icons left">edit</i>Edit Event</a>
+                <a className="waves-effect waves-light btn-large" onClick={() => setFormFlag(!formFlag)}><i className="material-icons left">edit</i>Edit Event</a>
                 <br />
-                <a className="waves-effect waves-light btn-large" onClick={handleInviteClick}><i className="material-icons left">insert_invitation</i>Invite</a>
+                <a className="waves-effect waves-light btn-large" onClick={() => setInviteFormFlag(!inviteFormFlag)}><i className="material-icons left">insert_invitation</i>Invite</a>
                 <br />
                 <a className="waves-effect waves-light btn-large red" onClick={handleCancelClick}><i className="material-icons left">edit</i>Cancel Event</a>
                 {inviteFormFlag ? <InvitationForm event={event.event} inviteFormFlag={inviteFormFlag} setInviteFormFlag={setInviteFormFlag} addGuest={addGuest} /> : null}

@@ -6,8 +6,6 @@ function PastEvents() {
 
     const {user} = useContext(UserContext)
 
-    console.log(user.events)
-
     const displayEvents = user.events.map(e => {
         const currentDate = new Date()
         if(e.date){
@@ -17,6 +15,8 @@ function PastEvents() {
             }
         }
     })
+
+    // console.log(displayEvents)
 
     return(
         <div>

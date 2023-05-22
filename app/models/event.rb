@@ -1,4 +1,4 @@
-class Event < ApplicationRecord\
+class Event < ApplicationRecord
 
   validates :name, :date, :time, :description, :location, presence: true
 

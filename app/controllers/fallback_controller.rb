@@ -1,7 +1,7 @@
 class FallbackController < ActionController::Base
 
     def index
-      render file: 'public/index.html'
+      render file: "#{Rails.root}/public/404.html", status: :not_found
     end
     
   end

@@ -35,7 +35,7 @@ function NavBar() {
                 <div className="nav-wrapper">
                     <a href="#" className="brand-logo right">RSVPify</a>
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
-                        <li><NavLink onClick={handleLogout}>Logout</NavLink></li>
+                        <li><NavLink onClick={() => handleLogout()}>Logout</NavLink></li>
                         <li><NavLink to="/">My Events</NavLink></li>
                         <li><NavLink to="/past-events">Past Events</NavLink></li>
                     </ul>

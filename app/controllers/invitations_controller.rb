@@ -1,19 +1,12 @@
 class InvitationsController < ApplicationController
 
-    # before_create :generate_token
     include Rails.application.routes.url_helpers
-
-    # def create
-    #     invite = Invitation.create!(invitation_params)
-    #     render json: invite
-    # end
 
     def create_invitation
         @event = Event.find(params[:event_id])
         @guests = Guest.where(id: params[:guest_ids])
         @guests.each do |guest|
             invitation = @event.invitations.create!(guest: guest, token: SecureRandom.hex(16), rsvp_status: "pending")
-            # byebug
             InvitationMailer.invitation_email(invitation).deliver_later
           end
     end
@@ -26,7 +19,6 @@ class InvitationsController < ApplicationController
     def update
         invitation = Invitation.find_by(token: params[:token])
         invitation.update!(invitation_params)
-        # byebug
         render json: invitation
     end
 

@@ -4,7 +4,7 @@ import UserHome from "./UserHome"
 
 function Home() {
 
-    const {user, loggedIn} = useContext(UserContext)
+    const { loggedIn } = useContext(UserContext)
 
     if(!loggedIn) {
         return (
@@ -12,7 +12,6 @@ function Home() {
         )
     } else {
         return (
-            // <h1>Hello, {user.first_name}</h1>
             <UserHome />
         )
     }

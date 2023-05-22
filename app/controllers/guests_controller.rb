@@ -1,7 +1,6 @@
 class GuestsController < ApplicationController
 
     def create
-        # event = Event.find_by(params[:event_id])
         guest = current_user.guests.create!(guest_params)
         render json: guest, status: :created
     end
