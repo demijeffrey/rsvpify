@@ -92,8 +92,8 @@ Rails.application.configure do
   
 
   config.action_mailer.default_url_options = { 
-    :host => 'http://www.rsvpify.onrender.com'
-    # :protocol => 'http'
+    :host => 'rsvpify.onrender.com',
+    :protocol => 'https'
   }
 
   config.action_mailer.smtp_settings = {
