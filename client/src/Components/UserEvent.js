@@ -51,8 +51,8 @@ function UserEvent() {
             fetch(`/events/${event.event.id}`, {
                 method: 'DELETE'
             })
-            removeUserEvent(event.event)
             navigate('/home')
+            removeUserEvent(event.event)
         }
     }
 

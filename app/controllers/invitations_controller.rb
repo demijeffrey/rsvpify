@@ -28,8 +28,8 @@ class InvitationsController < ApplicationController
     end
 
     def destroy
-    invite = Invitation.find_by(guest_id: params[:guest_id])
-    invite.destroy
+        invite = Invitation.find_by(guest_id: params[:guest_id])
+        invite.destroy
     end
 
     private

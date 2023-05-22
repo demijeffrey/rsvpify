@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     post 'create_invitation', to: 'invitations#create_invitation'
   end
 
-  get '/test', to: 'users#hey'
-
   get '/current-user', to: 'users#show'
   post '/signup', to: 'users#create'
 

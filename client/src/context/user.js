@@ -6,22 +6,17 @@ function UserProvider({children}) {
 
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
-    const [userEvents, setUserEvents] = useState([])
+    const [userEvents, setUserEvents] = useState(null)
 
     useEffect(() => {
         fetch('/current-user')
             .then(res => res.json())
             .then(currentUser => {
                 // debugger
-                if(currentUser === null) {
-                    setLoggedIn(false)
-                } else {
-                    setUser(currentUser)
-                    setUserEvents(currentUser.events)
-                    setLoggedIn(true)
-                }
+                setUser(currentUser)
+                currentUser.error ? setLoggedIn(false) : setLoggedIn(true)
             })
-    }, [])
+    }, [userEvents])
 
     const signup = (user) => {
         setUser(user)
@@ -39,16 +34,28 @@ function UserProvider({children}) {
     }
 
     const addUserEvent = (event) => {
-        setUserEvents([...userEvents, event])
+        setUserEvents([...user.events, event])
     }
 
     const removeUserEvent = (event) => {
-        const newEventList = userEvents.filter((e) => e.id !== event.id)
+        const newEventList = user.events.filter((e) => e.id !== event.id)
         setUserEvents(newEventList)
     }
 
+    const updateEventGuests = (event, guests) => {
+        const currentEvent = user.events.filter(e => e === event)
+        currentEvent.guests = guests
+        setUserEvents(user.events.map(uE => {
+            if(uE === currentEvent) {
+                return currentEvent
+            } else {
+                return uE
+            }
+        }))
+    }
+
     return (
-        <UserContext.Provider value={{user, loggedIn, signup, login, logout, addUserEvent, removeUserEvent}}>
+        <UserContext.Provider value={{user, loggedIn, signup, login, logout, addUserEvent, removeUserEvent, updateEventGuests}}>
             {children}
         </UserContext.Provider>
     )

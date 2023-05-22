@@ -1,10 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { UserContext } from "../context/user"
 
 function EditEventGuests({ event, guestFlag, setGuestFlag, allGuests, setAllGuests }) {
 
     console.log(event)
 
     const [guests, setGuests] = useState(event.guests)
+
+    const { updateEventGuests } = useContext(UserContext)
 
     function handleGuestRemoval(id) {
         fetch('/invitations', {
@@ -16,6 +19,9 @@ function EditEventGuests({ event, guestFlag, setGuestFlag, allGuests, setAllGues
         })
         setGuests(guests.filter(g => g.id !== id))
         setAllGuests(allGuests.filter(g => g.id !== id))
+        console.log('guests', guests)
+        console.log('allGuests', allGuests)
+        updateEventGuests(event, allGuests)
     }
 
     return(
