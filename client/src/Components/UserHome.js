@@ -52,6 +52,7 @@ function UserHome() {
                     {displayGuests}
                 </div>
                 <div className="col s9">
+                <h4>All Upcoming Events</h4>
                     {displayEvents}
                 </div>
         </div>

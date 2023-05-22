@@ -16,8 +16,6 @@ function PastEvents() {
         }
     })
 
-    // console.log(displayEvents)
-
     return(
         <div>
             <h4 className="center">Past Events</h4>

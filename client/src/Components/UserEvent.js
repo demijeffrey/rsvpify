@@ -11,7 +11,7 @@ function UserEvent() {
     const {state} = useLocation()
     const {event} = state
 
-    const {removeUserEvent} = useContext(UserContext)
+    const { removeUserEvent, updateEventGuests } = useContext(UserContext)
     const navigate = useNavigate()
 
     const date = new Date(event.event.date.substring(0, 10));
@@ -25,8 +25,6 @@ function UserEvent() {
     const [confirmed, setConfirmed] = useState([])
     const [guestFlag, setGuestFlag] = useState(true)
     const [allGuests, setAllGuests] = useState(event.event.guests)
-
-    console.log(event.event.invitations)
     
     useEffect(() => {
         const confirmedGuests = event.event.invitations.map(invite => {
@@ -44,6 +42,12 @@ function UserEvent() {
     function addGuest(selectedGuests) {
         console.log(selectedGuests)
         setAllGuests([...allGuests, ...selectedGuests])
+    }
+
+    function removeGuests(id) {
+        setConfirmed(confirmed.filter(g => g.id !== id))
+        setAllGuests(allGuests.filter(g => g.id !== id))
+        updateEventGuests(event.event, allGuests)
     }
 
     function handleCancelClick() {
@@ -87,7 +91,7 @@ function UserEvent() {
                             Guest List
                             </h5>
                             {confirmed !== [] ? confirmed.map(g => {
-                                return <div><h6 key={g.id} className="green-text darken-2">{g.first_name} {g.last_name}</h6></div>
+                                return <h6 key={g.id} className="green-text darken-2">{g.first_name} {g.last_name}</h6>
                             }) : null}
                             {allGuests.map(g => {
                                 return confirmed.includes(g) ? null :  <h6 key={g.id} className="red-text darken-2">{g.first_name} {g.last_name}</h6>
@@ -96,7 +100,7 @@ function UserEvent() {
                             <a className="waves-effect waves-light btn-small center" onClick={() => setGuestFlag(!guestFlag)}>Remove Guests</a>
                         </div>
                     </div>
-                </div> : <EditEventGuests event={event.event} guestFlag={guestFlag} setGuestFlag={setGuestFlag} allGuests={allGuests} setAllGuests={setAllGuests} />}
+                </div> : <EditEventGuests event={event.event} guestFlag={guestFlag} setGuestFlag={setGuestFlag} allGuests={allGuests} setAllGuests={setAllGuests} removeGuests={removeGuests} />}
                 <div className="card-panel teal">
                     <h5 className="white-text center">
                         Guest Messages

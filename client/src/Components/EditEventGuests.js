@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../context/user"
 
-function EditEventGuests({ event, guestFlag, setGuestFlag, allGuests, setAllGuests }) {
+function EditEventGuests({ event, guestFlag, setGuestFlag, allGuests, setAllGuests, removeGuests }) {
 
     console.log(event)
 
@@ -18,10 +18,10 @@ function EditEventGuests({ event, guestFlag, setGuestFlag, allGuests, setAllGues
             })
         })
         setGuests(guests.filter(g => g.id !== id))
-        setAllGuests(allGuests.filter(g => g.id !== id))
-        console.log('guests', guests)
-        console.log('allGuests', allGuests)
-        updateEventGuests(event, allGuests)
+        removeGuests(id)
+        // setAllGuests(allGuests.filter(g => g.id !== id))
+        // updateEventGuests(event, allGuests)
+
     }
 
     return(
