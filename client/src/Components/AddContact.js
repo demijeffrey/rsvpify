@@ -1,6 +1,9 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { UserContext } from "../context/user"
 
 function AddContactForm({ event, contactFormFlag, setContactFormFlag, contacts, setContacts }) {
+
+    const { addUserContact } = useContext(UserContext)
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -26,6 +29,7 @@ function AddContactForm({ event, contactFormFlag, setContactFormFlag, contacts, 
             console.log(data)
             setContactFormFlag(!contactFormFlag)
             setContacts([...contacts, data])
+            addUserContact(data)
         })
     }
 

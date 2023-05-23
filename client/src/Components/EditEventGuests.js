@@ -1,6 +1,6 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 
-function EditEventGuests({ event, guestFlag, setGuestFlag, allGuests, setAllGuests, removeGuests }) {
+function EditEventGuests({ event, guestFlag, setGuestFlag, removeGuests }) {
 
     console.log(event)
 

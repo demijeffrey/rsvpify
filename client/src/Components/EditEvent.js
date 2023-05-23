@@ -51,19 +51,16 @@ function EditEvent({ event, formFlag, setFormFlag, setCurrentEvent }) {
             <div className="row">
               <div className="input-field col s6">
                 <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
-                {/* <label>Event Name</label> */}
               </div>
             </div>
             <div className="row">
               <div className="input-field col s12">
                 <textarea id="description" className="materialize-textarea" value={description} onChange={e => setDescription(e.target.value)}></textarea>
-                {/* <label>Event Description</label> */}
               </div>
             </div>
             <div className="row">
               <div className="input-field col s6">
                 <input id="location" type="text" value={location} onChange={e => setLocation(e.target.value)} />
-                {/* <label>Event Location</label> */}
               </div>
             </div>
             <div className="row">
@@ -81,7 +78,6 @@ function EditEvent({ event, formFlag, setFormFlag, setCurrentEvent }) {
             <div className="row">
               <div className="input-field col s6">
                 <input id="photo" type="text" value={photoURL} onChange={e => setPhotoURL(e.target.value)} />
-                {/* <label>Event Photo URL</label> */}
               </div>
             </div>
             <button type="submit">Submit</button>

@@ -3,13 +3,14 @@ import { UserContext } from "../context/user"
 import { useNavigate } from "react-router-dom"
 import EventCard from "./EventCard"
 import AddContactForm from "./AddContact"
+import DeleteContacts from "./DeleteContacts"
 
 function UserHome() {
 
-    const {user} = useContext(UserContext)
-    console.log(user.guests)
+    const { user, removeUserContact } = useContext(UserContext)
 
     const [contactFormFlag, setContactFormFlag] = useState(false)
+    const [removeFormFlag, setRemoveFormFlag] = useState(false)
     const [contacts, setContacts] = useState(user.guests)
 
     const navigate = useNavigate()
@@ -34,8 +35,9 @@ function UserHome() {
         navigate('/new-event')
     }
 
-    function handleContactClick() {
-        setContactFormFlag(!contactFormFlag)
+    function removeContacts(c) {
+        removeUserContact(c)
+        setContacts(contacts.filter(contact => c.id !== contact.id))
     }
 
     return (
@@ -45,8 +47,10 @@ function UserHome() {
                 <div className="col s3">
                     <a className="waves-effect waves-light btn-large" onClick={handleNewClick}><i className="material-icons right">add</i>New Event</a>
                     <br />
-                    <a className="waves-effect waves-light btn-large" onClick={handleContactClick}><i className="material-icons right">person_add</i>New Contact</a>
+                    <a className="waves-effect waves-light btn-large" onClick={() => setContactFormFlag(!contactFormFlag)}><i className="material-icons right">person_add</i>New Contact</a>
+                    <a className="waves-effect waves-light btn-large" onClick={() => setRemoveFormFlag(!removeFormFlag)}><i className="material-icons right">person_add</i>Remove Contacts</a>
                     {contactFormFlag ? <AddContactForm contactFormFlag={contactFormFlag} setContactFormFlag={setContactFormFlag} contacts={contacts} setContacts={setContacts} /> : null}
+                    {removeFormFlag ? <DeleteContacts removeFormFlag={removeFormFlag} setRemoveFormFlag={setRemoveFormFlag} contacts={user.guests} removeContacts={removeContacts} /> : null}
                     <br />
                     <h5 className="center">Contacts</h5>
                     {displayGuests}

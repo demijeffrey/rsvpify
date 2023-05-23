@@ -6,18 +6,15 @@ import RSVPForm from "./RSVPForm"
 function RSVP() {
 
     const { id, token } = useParams()
-    const [invitation, setInvitation] = useState({})
+    // const [invitation, setInvitation] = useState({})
     const [guest, setGuest] = useState({})
     const [event, setEvent] = useState({})
-
-    // console.log(invitation)
-    // console.log(id)
 
     useEffect(() => {
         fetch(`/invitations/${id}/rsvp/${token}`)
         .then(res => res.json())
         .then(invite => {
-            setInvitation(invite)
+            // setInvitation(invite)
             setGuest(invite.guest)
             setEvent(invite.event)
         })
@@ -46,12 +43,10 @@ function RSVP() {
                             <div className="card">
                                 <div className="card-image">
                                     <img src={event.photo_url} />
-                                    {/* <span className="card-title black">{event.name}</span> */}
                                 </div>
                                 <div className="card-content">
                                     <h6>{event.description}</h6>
                                     <h5>When:</h5>
-                                    {/* <p>{event.date} at {event.time}</p> */}
                                     <p>{formattedDate} at {formattedTime}</p>
                                     <h5>Where:</h5>
                                     <p>{event.location}</p>

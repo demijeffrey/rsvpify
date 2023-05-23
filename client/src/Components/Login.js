@@ -27,8 +27,7 @@ function Login() {
                 res.json().then(user => {
                     console.log(user)
                     login(user)
-                    // navigate('/home')
-                    navigate('/')
+                    navigate('/home')
                 })
             } else {
                 console.log(res)

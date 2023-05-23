@@ -11,8 +11,6 @@ function EventCard(event) {
     const date = new Date(event.event.date.substring(0, 10));
     const formattedDate = format(date, 'MM-dd-yyyy');
 
-    // console.log(event.event.id)
-
     function handleDetailClick() {
         navigate('/event', { state: { event }})
     }

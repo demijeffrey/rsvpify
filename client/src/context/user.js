@@ -12,7 +12,6 @@ function UserProvider({children}) {
         fetch('/current-user')
             .then(res => res.json())
             .then(currentUser => {
-                // debugger
                 setUser(currentUser)
                 currentUser.error ? setLoggedIn(false) : setLoggedIn(true)
             })
@@ -31,6 +30,18 @@ function UserProvider({children}) {
     const logout = () => {
         setUser({})
         setLoggedIn(false)
+    }
+
+    const addUserContact = (contact) => {
+        const newUser = user
+        newUser.guests = [...newUser.guests, contact]
+        setUser(newUser)
+    }
+
+    const removeUserContact = (contact) => {
+        const newUser = user
+        newUser.guests = newUser.guests.filter(g => g.id !== contact.id)
+        setUser(newUser)
     }
 
     const addUserEvent = (event) => {
@@ -65,7 +76,7 @@ function UserProvider({children}) {
     }
 
     return (
-        <UserContext.Provider value={{user, loggedIn, signup, login, logout, addUserEvent, removeUserEvent, updateEventGuests, updateUserEvent}}>
+        <UserContext.Provider value={{user, loggedIn, signup, login, logout, addUserEvent, removeUserEvent, updateEventGuests, updateUserEvent, addUserContact, removeUserContact}}>
             {children}
         </UserContext.Provider>
     )

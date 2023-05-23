@@ -8,13 +8,13 @@ import { UserContext } from "../context/user"
 
 function UserEvent() {
 
+    const navigate = useNavigate()
     const {state} = useLocation()
     const {event} = state
 
     const [currentEvent, setCurrentEvent] = useState(event.event)
 
     const { removeUserEvent, updateEventGuests } = useContext(UserContext)
-    const navigate = useNavigate()
 
     const date = new Date(currentEvent.date.substring(0, 10));
     const formattedDate = format(date, 'MM-dd-yyyy');

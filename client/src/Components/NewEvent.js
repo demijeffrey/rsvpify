@@ -21,8 +21,7 @@ function NewEvent() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    // const formattedDate = new Date(date).toISOString().slice(0, 10);
-    // const formattedTime = new Date(`${date}T${time}`).toISOString().slice(11, 19);
+    
     const clientDate = new Date(`${date}T${time}`);
     const timezoneOffset = clientDate.getTimezoneOffset();
     const serverDate = new Date(clientDate.getTime() + timezoneOffset * 60000);
@@ -45,8 +44,7 @@ function NewEvent() {
     .then(data => {
       console.log(data)
       addUserEvent(data)
-      // navigate('/home')
-      navigate('/')
+      navigate('/home')
     })
   }
 
