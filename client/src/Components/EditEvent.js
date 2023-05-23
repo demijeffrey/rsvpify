@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { format } from 'date-fns'
+import { UserContext } from "../context/user"
 
-function EditEvent({ event }) {
+function EditEvent({ event, formFlag, setFormFlag, setCurrentEvent }) {
 
   console.log(event)
+
+  const { updateUserEvent } = useContext(UserContext)
 
   const [name, setName] = useState(event.name)
   const [description, setDescription] = useState(event.description)
@@ -35,7 +38,11 @@ function EditEvent({ event }) {
       })
     })
     .then(res => res.json())
-    .then(data => console.log('patch', data))
+    .then(data => {
+      setFormFlag(!formFlag)
+      setCurrentEvent(data)
+      updateUserEvent(data)
+    })
   }
 
     return (

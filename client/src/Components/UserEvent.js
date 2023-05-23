@@ -11,13 +11,15 @@ function UserEvent() {
     const {state} = useLocation()
     const {event} = state
 
+    const [currentEvent, setCurrentEvent] = useState(event.event)
+
     const { removeUserEvent, updateEventGuests } = useContext(UserContext)
     const navigate = useNavigate()
 
-    const date = new Date(event.event.date.substring(0, 10));
+    const date = new Date(currentEvent.date.substring(0, 10));
     const formattedDate = format(date, 'MM-dd-yyyy');
 
-    const time = event.event.time.substring(11, 16);
+    const time = currentEvent.time.substring(11, 16);
     const formattedTime = format(new Date(`1970-01-01T${time}`), 'hh:mm a');
 
     const [formFlag, setFormFlag] = useState(false)
@@ -76,10 +78,10 @@ function UserEvent() {
                 <div className="col s12 m5">
                     <div className="card-panel teal">
                         <h5 className="white-text center">
-                            {event.event.description}
+                            {currentEvent.description}
                         </h5>
                         <h5>Where:</h5>
-                        <p>{event.event.location}</p>
+                        <p>{currentEvent.location}</p>
                         <h5>When:</h5>
                         <p>{formattedDate} at {formattedTime}</p>
                     </div>
@@ -108,7 +110,7 @@ function UserEvent() {
                     {displayMessages}
                 </div>
                 <br />
-                <div className="row">{formFlag ? <EditEvent event={event.event} /> : null}</div>
+                <div className="row">{formFlag ? <EditEvent event={event.event} formFlag={formFlag} setFormFlag={setFormFlag} setCurrentEvent={setCurrentEvent} /> : null}</div>
             </div>
             <div className="col s5 pull-s7">
                 <br />

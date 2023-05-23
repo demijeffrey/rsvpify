@@ -37,6 +37,16 @@ function UserProvider({children}) {
         setUserEvents([...user.events, event])
     }
 
+    const updateUserEvent = (event) => {
+        setUserEvents(user.events.map(e => {
+            if(e.id === event.id) {
+                return event
+            } else {
+                return e
+            }
+        }))
+    }
+
     const removeUserEvent = (event) => {
         const newEventList = user.events.filter((e) => e.id !== event.id)
         setUserEvents(newEventList)
@@ -55,7 +65,7 @@ function UserProvider({children}) {
     }
 
     return (
-        <UserContext.Provider value={{user, loggedIn, signup, login, logout, addUserEvent, removeUserEvent, updateEventGuests}}>
+        <UserContext.Provider value={{user, loggedIn, signup, login, logout, addUserEvent, removeUserEvent, updateEventGuests, updateUserEvent}}>
             {children}
         </UserContext.Provider>
     )

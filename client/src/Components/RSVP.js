@@ -14,7 +14,7 @@ function RSVP() {
     // console.log(eventDate)
 
     useEffect(() => {
-        fetch(`/${token}`)
+        fetch(`/invitations/${token}`)
         .then(res => res.json())
         .then(invite => {
             setInvitation(invite)

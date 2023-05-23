@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :invitations do
-    get 'rsvp/:token', to: 'invitations#rsvp', as: 'rsvp_with_token'
-    # patch 'update/:token', to: 'invitations#update', as: 'update_with_token'
-  end
+  # resources :invitations do
+  #   get 'rsvp/:token', to: 'invitations#rsvp', as: 'rsvp_with_token'
+  #   # patch 'update/:token', to: 'invitations#update', as: 'update_with_token'
+  # end
 
-  
+  get '/invitations/:token', to: 'invitations#show'
   patch '/invitations', to: 'invitations#update'
   delete '/invitations', to: 'invitations#destroy'
 
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :events do
     post 'create_invitation', to: 'invitations#create_invitation'
   end
+  patch '/events', to: 'events#update'
 
   get '/current-user', to: 'users#show'
   post '/signup', to: 'users#create'
@@ -23,13 +24,12 @@ Rails.application.routes.draw do
 
   # get '/events', to: 'events#index'
   # post '/events', to: 'events#create'
-  patch '/events', to: 'events#update'
   # delete 'events/:id', to: 'events#destroy'
 
   # get '/guests', to: 'guests#index'
   # post '/guests', to: 'guests#create'
 
-  get '/:token', to: 'invitations#show'
+  # get '/:token', to: 'invitations#show'
 
   get '*path',
       to: 'fallback#index',
