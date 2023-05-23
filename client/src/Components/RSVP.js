@@ -5,16 +5,16 @@ import RSVPForm from "./RSVPForm"
 
 function RSVP() {
 
-    const { token } = useParams()
+    const { id, token } = useParams()
     const [invitation, setInvitation] = useState({})
     const [guest, setGuest] = useState({})
     const [event, setEvent] = useState({})
 
     // console.log(invitation)
-    // console.log(eventDate)
+    // console.log(id)
 
     useEffect(() => {
-        fetch(`/invitations/${token}`)
+        fetch(`/invitations/${id}/rsvp/${token}`)
         .then(res => res.json())
         .then(invite => {
             setInvitation(invite)

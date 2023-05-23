@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  get '/invitations/:token', to: 'invitations#show'
+  # get '/invitations/:token', to: 'invitations#show'
   patch '/invitations', to: 'invitations#update'
   delete '/invitations', to: 'invitations#destroy'
 
