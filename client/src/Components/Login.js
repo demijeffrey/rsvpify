@@ -1,6 +1,7 @@
 import { useState, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from "../context/user"
+import '../App.css';
 
 function Login() {
 
@@ -37,7 +38,7 @@ function Login() {
     }
 
     return(
-        <div>
+        <div className="login">
             <form className="card container" onSubmit={(e) => handleSubmit(e)}>
                 <div className="row">
                     <div className="input-field col s6">
@@ -52,6 +53,8 @@ function Login() {
                 <button type="submit">Sign in</button>
             </form>
             {error}
+            <br />
+            <div className="login2">.</div>
         </div>
     )
 

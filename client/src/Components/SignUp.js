@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useContext } from "react"
 import { UserContext } from "../context/user"
 import { useNavigate } from "react-router-dom"
+import '../App.css';
 
 function SignUp() {
 
@@ -41,32 +42,35 @@ function SignUp() {
     }
 
     return(
-        <form className="card container" onSubmit={(e) => handleSignup(e)}>
-            <div className="row">
-                <div className="input-field col s6">
-                    <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="validate"/>
-                    <label>First Name</label>
+        <div>
+            <form className="card container sign-up" onSubmit={(e) => handleSignup(e)}>
+                <div className="row">
+                    <div className="input-field col s6">
+                        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="validate"/>
+                        <label>First Name</label>
+                    </div>
+                    <div className="input-field col s6">
+                        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} className="validate"/>
+                        <label>Last Name</label>
+                    </div>
+                    <div className="input-field col s6">
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="validate"/>
+                        <label>Email</label>
+                    </div>
+                    <div className="input-field col s6">
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="validate"/>
+                        <label>Password</label>
+                    </div>
+                    <div className="input-field col s6">
+                        <input type="password" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} className="validate"/>
+                        <label>Password Confirmation</label>
+                    </div>
                 </div>
-                <div className="input-field col s6">
-                    <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} className="validate"/>
-                    <label>Last Name</label>
-                </div>
-                <div className="input-field col s6">
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="validate"/>
-                    <label>Email</label>
-                </div>
-                <div className="input-field col s6">
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="validate"/>
-                    <label>Password</label>
-                </div>
-                <div className="input-field col s6">
-                    <input type="password" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} className="validate"/>
-                    <label>Password Confirmation</label>
-                </div>
-            </div>
-            <button type="submit">Sign in</button>
-            {errors}
-        </form>
+                <button type="submit">Sign in</button>
+                {errors}
+            </form>
+            <div className="sign-up2">.</div>
+        </div>
     )
 
 }

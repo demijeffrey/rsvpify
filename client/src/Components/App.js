@@ -1,4 +1,4 @@
-// import '../App.css';
+import '../App.css';
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import NavBar from "./NavBar";
@@ -15,7 +15,7 @@ import RSVPConfirmation from "./RSVPConfirmation";
 function App() {
 
   return (
-    <div className="App">
+    <div className="App background-image">
       <NavBar />
       <Routes>
         <Route path="/signup" element={<SignUp />} />
