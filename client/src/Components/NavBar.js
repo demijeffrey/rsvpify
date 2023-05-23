@@ -21,7 +21,7 @@ function NavBar() {
         return(
             <nav>
                 <div className="nav-wrapper">
-                    <a href="#" className="brand-logo right">RSVPify</a>
+                    <a href="#" className="brand-logo right" onClick={() => navigate('/')}>RSVPify</a>
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
                         <li><NavLink to="/login">Login</NavLink></li>
                         <li><NavLink to="/signup">Sign Up</NavLink></li>
@@ -33,7 +33,7 @@ function NavBar() {
         return(
             <nav>
                 <div className="nav-wrapper">
-                    <a href="#" className="brand-logo right">RSVPify</a>
+                    <a href="#" className="brand-logo right" onClick={() => navigate('/home')}>RSVPify</a>
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
                         <li><NavLink onClick={() => handleLogout()}>Logout</NavLink></li>
                         <li><NavLink to="/">My Events</NavLink></li>

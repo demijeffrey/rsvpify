@@ -32,14 +32,14 @@ function Login() {
                 })
             } else {
                 console.log(res)
-                res.json().then(user => setError(user.error))
+                res.json().then(user => setError(<li>{user.error}</li>))
             }
         })
     }
 
     return(
-        <div className="login">
-            <form className="card container" onSubmit={(e) => handleSubmit(e)}>
+        <div>
+            <form className="card container login" onSubmit={(e) => handleSubmit(e)}>
                 <div className="row">
                     <div className="input-field col s6">
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="validate"/>
@@ -53,7 +53,6 @@ function Login() {
                 <button type="submit">Sign in</button>
             </form>
             {error}
-            <br />
             <div className="login2">.</div>
         </div>
     )

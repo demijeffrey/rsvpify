@@ -33,10 +33,10 @@ function SignUp() {
         .then(user => {
             if(!user.errors) {
                 signup(user)
-                navigate('/')
+                navigate('/home')
                 console.log('submitted')
             } else {
-                setErrors(user.errors.map(error => <li>{error}</li>))
+                setErrors(user.errors.map(error => <li key={error.id}>{error}</li>))
             }
         })
     }
@@ -67,8 +67,8 @@ function SignUp() {
                     </div>
                 </div>
                 <button type="submit">Sign in</button>
-                {errors}
             </form>
+            {errors}
             <div className="sign-up2">.</div>
         </div>
     )
