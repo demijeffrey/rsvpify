@@ -4,8 +4,6 @@ import { UserContext } from "../context/user"
 
 function EditEvent({ event, formFlag, setFormFlag, setCurrentEvent }) {
 
-  console.log(event)
-
   const { updateUserEvent } = useContext(UserContext)
 
   const [name, setName] = useState(event.name)

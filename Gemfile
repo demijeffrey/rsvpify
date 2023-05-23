@@ -53,4 +53,4 @@ gem "active_model_serializers", "~> 0.10.13"
 
 gem 'mail'
 
-gem "letter_opener", group: :development
+# gem "letter_opener", group: :development
