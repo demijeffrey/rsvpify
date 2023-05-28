@@ -10,8 +10,6 @@ function AddContactForm({ event, contactFormFlag, setContactFormFlag, contacts, 
     const [email, setEmail] = useState('')
     const [family, setFamily] = useState(null)
 
-    console.log(event)
-
     function handleSubmit(e) {
         e.preventDefault()
         fetch('/guests', {
@@ -26,7 +24,6 @@ function AddContactForm({ event, contactFormFlag, setContactFormFlag, contacts, 
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setContactFormFlag(!contactFormFlag)
             setContacts([...contacts, data])
             addUserContact(data)

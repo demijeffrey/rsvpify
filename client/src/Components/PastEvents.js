@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "../context/user"
 import EventCard from "./EventCard"
+import '../App.css';
 
 function PastEvents() {
 
@@ -18,10 +19,10 @@ function PastEvents() {
 
     return(
         <div>
-            <h4 className="center">Past Events</h4>
+            <h4 className="center all-events-header">Past Events</h4>
             <br />
             <div className="container">
-                {displayEvents}
+                <div className="event-cards">{displayEvents}</div>
             </div>
         </div>
     )

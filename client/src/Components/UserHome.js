@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import EventCard from "./EventCard"
 import AddContactForm from "./AddContact"
 import DeleteContacts from "./DeleteContacts"
+import '../App.css';
 
 function UserHome() {
 
@@ -12,6 +13,9 @@ function UserHome() {
     const [contactFormFlag, setContactFormFlag] = useState(false)
     const [removeFormFlag, setRemoveFormFlag] = useState(false)
     const [contacts, setContacts] = useState(user.guests)
+
+    const family = []
+    const friends = []
 
     const navigate = useNavigate()
 
@@ -25,10 +29,14 @@ function UserHome() {
         }
     })
 
-    const displayGuests = contacts.map(guest => {
-        return <ul key={guest.id}>{guest.first_name} {guest.last_name}
-            <li>{guest.email}</li>
-        </ul>
+   contacts.map(guest => {
+        if(guest.family) {
+            family.push(guest)
+            return guest
+        } else {
+            friends.push(guest)
+            return guest
+        }
     })
 
     function handleNewClick() {
@@ -45,19 +53,33 @@ function UserHome() {
             <h1 className="center">Hello, {user.first_name}</h1>
             <div className="row">
                 <div className="col s3">
-                    <a className="waves-effect waves-light btn-large" onClick={handleNewClick}><i className="material-icons right">add</i>New Event</a>
+                    <a className="waves-effect waves-light btn-large" onClick={handleNewClick}><i className="material-icons right">event</i>New Event</a>
                     <br />
                     <a className="waves-effect waves-light btn-large" onClick={() => setContactFormFlag(!contactFormFlag)}><i className="material-icons right">person_add</i>New Contact</a>
-                    <a className="waves-effect waves-light btn-large" onClick={() => setRemoveFormFlag(!removeFormFlag)}><i className="material-icons right">person_add</i>Remove Contacts</a>
+                    <a className="waves-effect waves-light btn-large" onClick={() => setRemoveFormFlag(!removeFormFlag)}><i className="material-icons right">remove_circle</i>Remove Contacts</a>
                     {contactFormFlag ? <AddContactForm contactFormFlag={contactFormFlag} setContactFormFlag={setContactFormFlag} contacts={contacts} setContacts={setContacts} /> : null}
                     {removeFormFlag ? <DeleteContacts removeFormFlag={removeFormFlag} setRemoveFormFlag={setRemoveFormFlag} contacts={user.guests} removeContacts={removeContacts} /> : null}
                     <br />
-                    <h5 className="center">Contacts</h5>
-                    {displayGuests}
+                    <div>
+                        <h5 className="center contacts">Contacts</h5>
+                        <h6 className="contact-categories">Family</h6>
+                        {family.map(fM => {
+                            return <ul key={fM.id} className="contact-names">{fM.first_name} {fM.last_name}
+                                <li className="email">{fM.email}</li>
+                            </ul>
+                        })}
+                        <br />
+                        <h6 className="contact-categories">Friends</h6>
+                        {friends.map(friend => {
+                            return <ul key={friend.id}>{friend.first_name} {friend.last_name}
+                                <li>{friend.email}</li>
+                            </ul>
+                        })}
+                    </div>
                 </div>
                 <div className="col s9">
-                <h4>All Upcoming Events</h4>
-                    {displayEvents}
+                    <h4 className="all-events-header">All Upcoming Events</h4>
+                    <div className="event-cards">{displayEvents}</div>
                 </div>
         </div>
     </div>

@@ -78,3 +78,29 @@
 .sign-up2{
   margin-top: 90px;
 }
+
+.contact-categories{
+  font-weight: bolder;
+}
+
+.contacts{
+  text-decoration: underline;
+  margin-bottom: 25px;
+}
+
+.email{
+  font-style: oblique;
+  color: rgb(21, 5, 82);
+}
+
+.contact-names{
+  color: rgb(0, 0, 0);
+}
+
+.all-events-header{
+  text-decoration: underline;
+}
+
+.event-cards{
+  margin-left: 250px;
+}

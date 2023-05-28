@@ -96,7 +96,7 @@ function UserEvent() {
                                 return <h6 key={g.id} className="green-text darken-2">{g.first_name} {g.last_name}</h6>
                             }) : null}
                             {allGuests.map(g => {
-                                return confirmed.includes(g) ? null :  <h6 key={g.id} className="red-text darken-2">{g.first_name} {g.last_name}</h6>
+                                return confirmed.includes(g) ? null : <h6 key={g.id} className="red-text darken-2">{g.first_name} {g.last_name}</h6>
                             })}
                             <br />
                             <a className="waves-effect waves-light btn-small center" onClick={() => setGuestFlag(!guestFlag)}>Remove Guests</a>
