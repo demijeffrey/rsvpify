@@ -71,8 +71,8 @@ function UserHome() {
                         <br />
                         <h6 className="contact-categories">Friends</h6>
                         {friends.map(friend => {
-                            return <ul key={friend.id}>{friend.first_name} {friend.last_name}
-                                <li>{friend.email}</li>
+                            return <ul key={friend.id} className="contact-names">{friend.first_name} {friend.last_name}
+                                <li className="email">{friend.email}</li>
                             </ul>
                         })}
                     </div>
