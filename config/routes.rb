@@ -26,9 +26,6 @@ Rails.application.routes.draw do
   # post '/events', to: 'events#create'
   # delete 'events/:id', to: 'events#destroy'
 
-  # get '/guests', to: 'guests#index'
-  # post '/guests', to: 'guests#create'
-
   # get '/:token', to: 'invitations#show'
 
   get '*path',
