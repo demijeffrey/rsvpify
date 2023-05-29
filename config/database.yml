@@ -83,14 +83,14 @@ test:
 #   <<: *default
 #   url: <%= ENV['DATABASE_URL'] %>
 
-production:
-  <<: *default
-  url: Rails.application.credentials[:database_url]
-  
-#
 # production:
 #   <<: *default
-#   database: rsvpify_production
-#   username: rsvpify
-#   password: <%= ENV["RSVPIFY_DATABASE_PASSWORD"] %>
+#   url: Rails.application.credentials[:database_url]
+  
+#
+production:
+  <<: *default
+  database: rsvpify_production
+  username: rsvpify
+  password: <%= ENV["RSVPIFY_DATABASE_PASSWORD"] %>
 
