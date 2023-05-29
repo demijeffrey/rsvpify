@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  # get '/invitations/:token', to: 'invitations#show'
   patch '/invitations', to: 'invitations#update'
   delete '/invitations', to: 'invitations#destroy'
 
@@ -26,10 +25,8 @@ Rails.application.routes.draw do
   # post '/events', to: 'events#create'
   # delete 'events/:id', to: 'events#destroy'
 
-  # get '/:token', to: 'invitations#show'
-
-  get '*path',
-      to: 'fallback#index',
-      constraints: ->(req) { !req.xhr? && req.format.html? }
+  # get '*path',
+  #     to: 'fallback#index',
+  #     constraints: ->(req) { !req.xhr? && req.format.html? }
 
 end

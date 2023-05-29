@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
 
-    include Rails.application.routes.url_helpers
+    # include Rails.application.routes.url_helpers
 
     def create_invitation
         @event = Event.find(params[:event_id])
@@ -22,10 +22,10 @@ class InvitationsController < ApplicationController
         render json: invitation
     end
 
-    def show
-        invite = Invitation.find_by(token: params[:token])
-        render json: invite
-    end
+    # def show
+    #     invite = Invitation.find_by(token: params[:token])
+    #     render json: invite
+    # end
 
     def destroy
         invite = Invitation.find_by(guest_id: params[:guest_id])

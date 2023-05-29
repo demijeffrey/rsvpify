@@ -1,5 +1,7 @@
 class GuestsController < ApplicationController
 
+    before_action :authorize
+
     def create
         guest = current_user.guests.create!(guest_params)
         render json: guest, status: :created
