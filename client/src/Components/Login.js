@@ -26,12 +26,10 @@ function Login() {
         .then(res => {
             if(res.ok) {
                 res.json().then(user => {
-                    console.log(user)
                     login(user)
-                    navigate('/home')
+                    navigate('/')
                 })
             } else {
-                console.log(res)
                 res.json().then(user => setError(<li>{user.error}</li>))
             }
         })

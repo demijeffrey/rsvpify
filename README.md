@@ -1,29 +1,3 @@
-<!-- # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ... -->
-
-
 # RSVPify
 
 This event invitation manager is designed to simplify event planning by managing the events guest list. A logged in user has the ability to create an event, keep a record of all their contacts, and send event invitations to their contacts email. RSVPify will keep track the guest list, rendering the guests names green when confirmed and red if pending, undecided, or not attending, and also any messages left by guests through their confirmation. Inside the email sent out to each guest is a RSVP link which will redirect them to the RSVPify app to an RSVP form for them to complete and submit with their response and an optional message if they choose to leave one.

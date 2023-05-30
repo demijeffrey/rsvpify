@@ -4,7 +4,6 @@ import { UserContext } from "../context/user"
 function InvitationForm({ event, addGuest, inviteFormFlag, setInviteFormFlag }) {
 
     const {user} = useContext(UserContext)
-    console.log(event)
 
     const [selectedGuests, setSelectedGuests] = useState([])
 

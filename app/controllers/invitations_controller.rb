@@ -22,11 +22,6 @@ class InvitationsController < ApplicationController
         render json: invitation
     end
 
-    # def show
-    #     invite = Invitation.find_by(token: params[:token])
-    #     render json: invite
-    # end
-
     def destroy
         invite = Invitation.find_by(guest_id: params[:guest_id])
         invite.destroy

@@ -42,8 +42,8 @@ function UserEvent() {
     }, [allGuests])
 
     function addGuest(selectedGuests) {
-        console.log(selectedGuests)
         setAllGuests([...allGuests, ...selectedGuests])
+        updateEventGuests(event.event, allGuests)
     }
 
     function removeGuests(id) {
@@ -57,8 +57,8 @@ function UserEvent() {
             fetch(`/events/${event.event.id}`, {
                 method: 'DELETE'
             })
-            navigate('/home')
             removeUserEvent(event.event)
+            navigate('/')
         }
     }
 

@@ -17,8 +17,6 @@ function NewEvent() {
 
   const navigate = useNavigate()
 
-  console.log(time)
-
   function handleSubmit(e) {
     e.preventDefault()
     
@@ -42,7 +40,6 @@ function NewEvent() {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       addUserEvent(data)
       navigate('/home')
     })

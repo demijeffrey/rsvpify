@@ -6,7 +6,6 @@ import RSVPForm from "./RSVPForm"
 function RSVP() {
 
     const { id, token } = useParams()
-    // const [invitation, setInvitation] = useState({})
     const [guest, setGuest] = useState({})
     const [event, setEvent] = useState({})
 
@@ -14,7 +13,6 @@ function RSVP() {
         fetch(`/invitations/${id}/rsvp/${token}`)
         .then(res => res.json())
         .then(invite => {
-            // setInvitation(invite)
             setGuest(invite.guest)
             setEvent(invite.event)
         })

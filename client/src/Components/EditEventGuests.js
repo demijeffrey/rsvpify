@@ -2,8 +2,6 @@ import { useState } from "react"
 
 function EditEventGuests({ event, guestFlag, setGuestFlag, removeGuests }) {
 
-    console.log(event)
-
     const [guests, setGuests] = useState(event.guests)
 
     function handleGuestRemoval(id) {
