@@ -6,8 +6,6 @@ function EditEvent({ event, formFlag, setFormFlag, setCurrentEvent }) {
 
   const { updateUserEvent } = useContext(UserContext)
 
-  console.log(event)
-
   const [name, setName] = useState(event.name)
   const [description, setDescription] = useState(event.description)
   const [location, setLocation] = useState(event.location)
