@@ -36,7 +36,8 @@ function SignUp() {
                 navigate('/home')
                 console.log('submitted')
             } else {
-                setErrors(user.errors.map(error => <li key={error.id}>{error}</li>))
+                setErrors(user.errors.map(error => <li key={error.error}>{error}</li>))
+                console.log(user.errors)
             }
         })
     }

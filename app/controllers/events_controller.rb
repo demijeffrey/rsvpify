@@ -1,10 +1,16 @@
 class EventsController < ApplicationController
 
     before_action :authorize
+    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
     def create
         event = current_user.events.create!(event_params)
         render json: event, status: :created
+        # if event.valid?
+        #     render json: event, status: :created
+        # else
+        #     render json: {errors: event.errors.full_messages}, status: :unprocessable_entity
+        # end
     end
 
     def index
@@ -27,6 +33,10 @@ class EventsController < ApplicationController
 
     def event_params
         params.permit(:name, :date, :time, :location, :description, :photo_url)
+    end
+
+    def record_invalid(invalid)
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
 end

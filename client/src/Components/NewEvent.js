@@ -12,6 +12,8 @@ function NewEvent() {
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
   const [photoURL, setPhotoURL] = useState('')
+  const [error, setError] = useState('')
+  const [errors, setErrors] = useState('')
 
   const {addUserEvent} = useContext(UserContext)
 
@@ -19,6 +21,11 @@ function NewEvent() {
 
   function handleSubmit(e) {
     e.preventDefault()
+
+    if (!date || !time) {
+      setError("Please enter both date and time.");
+      return;
+    }
     
     const clientDate = new Date(`${date}T${time}`);
     const timezoneOffset = clientDate.getTimezoneOffset();
@@ -38,11 +45,19 @@ function NewEvent() {
         photo_url: photoURL
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      addUserEvent(data)
-      navigate('/home')
-    })
+    .then(res => {
+      if(res.ok) {
+          res.json().then(data => {
+            addUserEvent(data)
+            navigate('/')
+          })
+      } else {
+          res.json().then(data => {
+            console.log(data)
+            setErrors(data.errors.map(error => <p key={error.error}>{error}</p>))
+          })
+      }
+  })
   }
 
     return (
@@ -88,6 +103,8 @@ function NewEvent() {
             </div>
             <button type="submit">Submit</button>
           </form>
+          {error}
+          {errors}
         </div>
       </div>
     )
