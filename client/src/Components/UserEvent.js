@@ -14,6 +14,9 @@ function UserEvent() {
 
     const [currentEvent, setCurrentEvent] = useState(event.event)
 
+    const currentDate = new Date();
+    const eventDate = new Date(currentEvent.date);
+
     const { removeUserEvent, updateEventGuests } = useContext(UserContext)
 
     const date = new Date(currentEvent.date.substring(0, 10));
@@ -118,7 +121,8 @@ function UserEvent() {
                 <h3>{event.event.name}</h3>
                 <a className="waves-effect waves-light btn-large" onClick={() => setFormFlag(!formFlag)}><i className="material-icons left">edit</i>Edit Event</a>
                 <br />
-                <a className="waves-effect waves-light btn-large" onClick={() => setInviteFormFlag(!inviteFormFlag)}><i className="material-icons left">insert_invitation</i>Invite</a>
+                {/* <a className="waves-effect waves-light btn-large" onClick={() => setInviteFormFlag(!inviteFormFlag)}><i className="material-icons left">insert_invitation</i>Invite</a> */}
+                {currentDate < eventDate ? <a className="waves-effect waves-light btn-large" onClick={() => setInviteFormFlag(!inviteFormFlag)}><i className="material-icons left">insert_invitation</i>Invite</a> : null}
                 <br />
                 <a className="waves-effect waves-light btn-large red" onClick={handleCancelClick}><i className="material-icons left">edit</i>Cancel Event</a>
                 {inviteFormFlag ? <InvitationForm event={event.event} inviteFormFlag={inviteFormFlag} setInviteFormFlag={setInviteFormFlag} addGuest={addGuest} /> : null}
