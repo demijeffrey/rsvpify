@@ -1,17 +1,30 @@
 import { useContext, useState } from "react"
-import { format } from 'date-fns'
+import { format , addMinutes, subMinutes } from 'date-fns'
 import { UserContext } from "../context/user"
 
 function EditEvent({ event, formFlag, setFormFlag, setCurrentEvent }) {
 
   const { updateUserEvent } = useContext(UserContext)
 
+  console.log(event)
+
   const [name, setName] = useState(event.name)
   const [description, setDescription] = useState(event.description)
   const [location, setLocation] = useState(event.location)
-  const [date, setDate] = useState('')
-  const [time, setTime] = useState('')
   const [photoURL, setPhotoURL] = useState(event.photo_url)
+
+  const [date, setDate] = useState(() => {
+    const clientDate = new Date(event.date);
+    const timezoneOffset = clientDate.getTimezoneOffset();
+    const adjustedDate = subMinutes(clientDate, timezoneOffset);
+    return format(adjustedDate, 'yyyy-MM-dd');
+  })
+  const [time, setTime] = useState(() => {
+    const clientDate = new Date(event.time);
+    const timezoneOffset = clientDate.getTimezoneOffset();
+    const adjustedDate = addMinutes(clientDate, timezoneOffset);
+    return `${adjustedDate.getHours().toString().padStart(2, '0')}:${adjustedDate.getMinutes().toString().padStart(2, '0')}`;
+  })
 
   function handleSubmit(e) {
     e.preventDefault()
