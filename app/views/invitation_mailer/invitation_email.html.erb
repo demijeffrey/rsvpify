@@ -11,7 +11,7 @@
       <p>Your family is also invited.</p>
     <% end %>
     <p>Please RSVP using the following link:</p>
-    <a href="https://rsvpify.onrender.com/-invitations/<%= @id %>/rsvp/<%= @token %>">RSVP</a>
+    <a href= invitation_rsvp_with_token_url(@invitation, token: @token)>RSVP</a>
     <%= link_to 'RSVP', invitation_rsvp_with_token_url(@invitation, token: @token) %>
     <p>We hope to see you there!</p>
   </body>
