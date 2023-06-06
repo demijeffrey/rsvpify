@@ -13,7 +13,7 @@
     <p>Please RSVP using the following link:</p>
     # <a href="http://rsvpify.onrender.com/-invitations/<%= @invitation.id %>/rsvp/<%= @invitation.token %>">RSVP</a>
     # <%= link_to 'RSVP', invitation_rsvp_with_token_url(@invitation, token: @token) %>
-    <%= link_to 'RSVP', "http://rsvpify.onrender.com/-invitations/<%= @invitation.id %>/rsvp/<%= @invitation.token" %>
+    <%= link_to 'RSVP', "http://rsvpify.onrender.com/-invitations/<%= @invitation.id %>/rsvp/<%= @invitation.token %>"
     <p>We hope to see you there!</p>
   </body>
 </html>
