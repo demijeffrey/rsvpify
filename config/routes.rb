@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   patch '/invitations', to: 'invitations#update'
   delete '/invitations', to: 'invitations#destroy'
+  get '/-invitations/:id/rsvp/:token', to: "invitations#rsvp"
 
   get '*path',
       to: 'fallback#index',
