@@ -23,8 +23,8 @@ function NewEvent() {
     e.preventDefault()
 
     if (!date || !time) {
-      setError("Please enter both date and time.");
-      return;
+      setError("Please enter both date and time")
+      return
     }
     
     const clientDate = new Date(`${date}T${time}`);
@@ -53,8 +53,8 @@ function NewEvent() {
           })
       } else {
           res.json().then(data => {
-            console.log(data)
-            setErrors(data.errors.map(error => <p key={error.error}>{error}</p>))
+            console.log(data.errors)
+            setErrors(data.errors.map((error, index) => <p key={index}>{error}</p>))
           })
       }
   })
