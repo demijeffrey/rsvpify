@@ -10,6 +10,7 @@ class InvitationMailer < ApplicationMailer
         @guest = invitation.guest
         @event = invitation.event
         @token = invitation.token
+        @id = invitation.id
 
         mail(to: @guest.email, subject: "Invitation to #{invitation.event.name}")
       end

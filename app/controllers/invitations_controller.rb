@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
 
-    # include Rails.application.routes.url_helpers
+    include Rails.application.routes.url_helpers
 
     def create_invitation
         @event = Event.find(params[:event_id])
