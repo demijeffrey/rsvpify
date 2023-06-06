@@ -12,8 +12,8 @@ class InvitationsController < ApplicationController
     end
 
     def rsvp
-        @invitation = Invitation.find_by(token: params[:token])
-        render json: @invitation
+        invitation = Invitation.find_by(token: params[:token])
+        render json: invitation
     end
     
     def update
