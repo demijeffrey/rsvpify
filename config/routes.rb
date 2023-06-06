@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :invitations do
-    get '/rsvp/:token', to: 'invitations#rsvp2', as: 'rsvp_with_token'
+    get '/rsvp/:token', to: 'invitations#rsvp', as: 'rsvp_with_token'
   end
 
   resources :guests

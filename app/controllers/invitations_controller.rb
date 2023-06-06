@@ -15,11 +15,6 @@ class InvitationsController < ApplicationController
         invitation = Invitation.find_by(token: params[:token])
         render json: invitation
     end
-
-    def rsvp2
-        invitation = Invitation.find_by(token: params[:token])
-        render file:  "app/client/src/Components/RSVP.js"
-    end
     
     def update
         invitation = Invitation.find_by(token: params[:token])
