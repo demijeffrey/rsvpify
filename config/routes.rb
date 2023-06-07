@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   patch '/invitations', to: 'invitations#update'
   delete '/invitations', to: 'invitations#destroy'
 
-  get '*path',
-      to: 'fallback#index',
-      constraints: ->(req) { !req.xhr? && req.format.html? }
+  # get '*path',
+  #     to: 'fallback#index',
+  #     constraints: ->(req) { !req.xhr? && req.format.html? }
 
 end
