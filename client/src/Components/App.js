@@ -24,8 +24,9 @@ function App() {
         <Route path="/event" element={<UserEvent />} />
         <Route path="/edit" element={<EditEvent />} />
         <Route path="/new-event" element={<NewEvent />} />
-        <Route path="/invitations/:id/rsvp/:token" element={<RSVP />} />
-        <Route path="/-invitations/:id/rsvp/:token" element={<RSVP />} />
+        {/* <Route path="/invitations/:id/rsvp/:token" element={<RSVP />} />
+        <Route path="/-invitations/:id/rsvp/:token" element={<RSVP />} /> */}
+        <Route path='/invitation-response/:id/:token' element={<RSVP />} />
         <Route path="/past-events" element={<PastEvents />} />
         <Route path="/thank-you" element={<RSVPConfirmation />} />
         <Route path="/" element={<Home />} />
