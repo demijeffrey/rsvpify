@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../context/user"
 
-function AddContactForm({ event, contactFormFlag, setContactFormFlag, contacts, setContacts }) {
+function AddContactForm({ contactFormFlag, setContactFormFlag, contacts, setContacts }) {
 
     const { addUserContact } = useContext(UserContext)
 

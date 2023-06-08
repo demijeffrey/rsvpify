@@ -6,11 +6,6 @@ class EventsController < ApplicationController
     def create
         event = current_user.events.create!(event_params)
         render json: event, status: :created
-        # if event.valid?
-        #     render json: event, status: :created
-        # else
-        #     render json: {errors: event.errors.full_messages}, status: :unprocessable_entity
-        # end
     end
 
     def index

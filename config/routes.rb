@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  # get '-invitations/:id/rsvp/:token', to: 'invitations#rsvp'
   resources :invitations do
     get '/rsvp/:token', to: 'invitations#rsvp', as: 'rsvp_with_token'
   end
@@ -21,8 +20,8 @@ Rails.application.routes.draw do
   patch '/invitations', to: 'invitations#update'
   delete '/invitations', to: 'invitations#destroy'
 
-  # get '*path',
-  #     to: 'fallback#index',
-  #     constraints: ->(req) { !req.xhr? && req.format.html? }
+  get '*path',
+      to: 'fallback#index',
+      constraints: ->(req) { !req.xhr? && req.format.html? }
 
 end
