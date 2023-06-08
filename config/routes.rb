@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  get '-invitations/:id/rsvp/:token', to: 'invitations#rsvp'
   resources :invitations do
     get '/rsvp/:token', to: 'invitations#rsvp', as: 'rsvp_with_token'
   end
