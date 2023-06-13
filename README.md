@@ -1,6 +1,13 @@
 # RSVPify
 
-This event invitation manager is designed to simplify event planning by managing the guest list for a given event. A logged in user has the ability to create an event, keep a record of all their contacts, and send event invitations to their contacts email. RSVPify will keep track the guest list, displaying the guests names green when confirmed and red if pending, undecided, or not attending, as well as any messages left by guests during their RSVP submission. Inside the email sent out to each guest is a RSVP link which will redirect them to the RSVPify app to an RSVP form for them to complete and submit with their response and an optional message if they choose to leave one. This application is designed to run locally on your personal server. To experiment with RSVPify, follow the steps below to get started!
+This event invitation manager is designed to simplify event planning by managing the guest list for a given event. A logged in user has the ability to create an event, keep a record of all their contacts, and send event invitations to their contacts email. RSVPify will keep track the guest list, displaying the guests names green when confirmed and red if pending, undecided, or not attending, as well as any messages left by guests during their RSVP submission. Inside the email sent out to each guest is a RSVP link which will redirect them to the RSVPify app to an RSVP form for them to complete and submit with their response and an optional message if they choose to leave one. This application is designed to run locally on your personal server. To experiment with RSVPify, follow the installation steps below to get started!
+
+## See RSVPify in Action
+
+Check out this quick video walkthrough to see all of the features RSVPify has to offer:
+
+https://youtu.be/o-L7kNXEnnY
+
 
 ## Constructed With
 
