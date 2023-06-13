@@ -6,7 +6,7 @@ This event invitation manager is designed to simplify event planning by managing
 
 Check out this quick video walkthrough to see all of the features RSVPify has to offer:
 
-https://youtu.be/o-L7kNXEnnY
+[![RSVPify](https://img.youtube.com/vi/o-L7kNXEnnY/0.jpg)](https://youtu.be/o-L7kNXEnnY)
 
 
 ## Constructed With
